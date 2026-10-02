@@ -172,7 +172,7 @@ function DepositContent() {
                 <h2 className="text-[22px] font-extrabold text-white">Deposit Funds</h2>
                 <Link 
                   href="/dashboard/mining" 
-                  className="text-[#f59e0b] hover:text-amber-400 text-[13px] font-semibold underline underline-offset-4 transition-colors block"
+                  className="text-[#0073b6] hover:text-amber-400 text-[13px] font-semibold underline underline-offset-4 transition-colors block"
                 >
                   View packages
                 </Link>
@@ -197,7 +197,7 @@ function DepositContent() {
                           {selectedCrypto.icon ? (
                             <img src={selectedCrypto.icon} alt={selectedCrypto.name} className="w-full h-full object-cover" />
                           ) : (
-                            <span className="text-[10px] font-bold text-[#f59e0b]">{selectedCrypto.symbol.charAt(0)}</span>
+                            <span className="text-[10px] font-bold text-[#0073b6]">{selectedCrypto.symbol.charAt(0)}</span>
                           )}
                         </div>
                         <span className="font-bold text-[13.5px] uppercase text-white/90">
@@ -235,7 +235,7 @@ function DepositContent() {
                               {crypto.icon ? (
                                 <img src={crypto.icon} alt={crypto.name} className="w-full h-full object-cover" />
                               ) : (
-                                <span className="text-[10px] font-bold text-[#f59e0b]">{crypto.symbol.charAt(0)}</span>
+                                <span className="text-[10px] font-bold text-[#0073b6]">{crypto.symbol.charAt(0)}</span>
                               )}
                             </div>
                             <div>
@@ -244,7 +244,7 @@ function DepositContent() {
                             </div>
                           </div>
                           {selectedCrypto?.id === crypto.id && (
-                            <Check size={14} className="text-[#f59e0b]" />
+                            <Check size={14} className="text-[#0073b6]" />
                           )}
                         </button>
                       ))
@@ -294,30 +294,30 @@ function DepositContent() {
                 {customRules.length > 0 ? (
                   customRules.map((line, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">•</span>
+                      <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">•</span>
                       <p className="leading-relaxed font-medium text-gray-300" dangerouslySetInnerHTML={{ __html: line }} />
                     </li>
                   ))
                 ) : (
                   <>
                     <li className="flex items-start gap-2.5">
-                      <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">•</span>
+                      <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">•</span>
                       <p className="leading-relaxed font-medium">Minimum deposit: ${settings.min_deposit || 50} equivalent</p>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">•</span>
+                      <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">•</span>
                       <p className="leading-relaxed font-medium">Wait for network confirmations (typically 1–3 blocks)</p>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">•</span>
+                      <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">•</span>
                       <p className="leading-relaxed font-medium">Supported networks: TRC-20, ERC-20, BEP-20, Polygon</p>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">•</span>
+                      <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">•</span>
                       <p className="leading-relaxed font-medium">Processing time: usually 5–30 minutes after confirmation</p>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">!</span>
+                      <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">!</span>
                       <p className="leading-relaxed font-semibold text-amber-200">Send only the selected currency to this address; wrong assets may be lost</p>
                     </li>
                   </>
@@ -385,7 +385,7 @@ function DepositContent() {
 
             {/* Waiting for Payment Notification */}
             <div className="bg-[#111827]/50 border border-white/5 rounded-[24px] p-6 shadow-xl flex flex-col items-center justify-center space-y-4 relative z-10">
-              <Loader2 className="animate-spin text-[#f59e0b]" size={28} />
+              <Loader2 className="animate-spin text-[#0073b6]" size={28} />
               <div className="text-center space-y-1 px-2">
                 <h4 className="text-[14px] font-bold text-white">Awaiting Payment</h4>
                 <p className="text-[11.5px] text-gray-400 leading-relaxed">
@@ -440,7 +440,7 @@ function DepositContent() {
               </button>
               <button
                 onClick={handleConfirmPay}
-                className="flex-1 h-[42px] bg-[#f59e0b] hover:bg-amber-600 text-white rounded-[12px] font-bold text-[13px] transition-all shadow-md cursor-pointer"
+                className="flex-1 h-[42px] bg-[#0073b6] hover:bg-amber-600 text-white rounded-[12px] font-bold text-[13px] transition-all shadow-md cursor-pointer"
               >
                 Confirm & Pay
               </button>

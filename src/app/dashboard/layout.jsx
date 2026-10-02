@@ -30,8 +30,8 @@ export default function DashboardLayout({ children }) {
 
   const user = userRes?.user;
   const settings = settingsResponse?.settings || {};
-  const siteName = settings.site_name || "Kryptex Mining";
-  const siteLogo = settings.platform_logo || null;
+  const siteName = settings.site_name || "TradeFluxBot";
+  const siteLogo = settings.platform_logo || "/logo.jpeg";
   const dynamicLanguages = languagesResponse?.data || [];
 
   const isProtectedRoute = useMemo(() => {
@@ -52,7 +52,7 @@ export default function DashboardLayout({ children }) {
   if (isLoadingSettings || isLoadingProfile) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-[#f59e0b] rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-gray-100 border-t-[#0073b6] rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -81,14 +81,16 @@ export default function DashboardLayout({ children }) {
                 </div>
               )}
               <span className="text-white font-bold text-[16px] tracking-tight">
-                {siteName.toLowerCase().includes('kryptex') ? (
-                  <>Kryptex <span className="text-[#f59e0b]">Mining</span></>
+                {siteName.toLowerCase().includes('tradeflux') ? (
+                  <>TradeFlux<span className="text-[#0073b6]">Bot</span></>
+                ) : siteName.toLowerCase().includes('kryptex') ? (
+                  <>Kryptex <span className="text-[#0073b6]">Mining</span></>
                 ) : siteName.toLowerCase().includes('mykryptex') ? (
-                  <>MyKryptex<span className="text-[#f59e0b]">App</span></>
+                  <>MyKryptex<span className="text-[#0073b6]">App</span></>
                 ) : siteName.toLowerCase().includes('polychain') ? (
-                  <>Polychain<span className="text-[#f59e0b]">Mining</span></>
+                  <>Polychain<span className="text-[#0073b6]">Mining</span></>
                 ) : siteName.toLowerCase().includes('pallas') ? (
-                  <>Pallas<span className="text-[#f59e0b]">Trade</span></>
+                  <>Pallas<span className="text-[#0073b6]">Trade</span></>
                 ) : (
                   <>{siteName}</>
                 )}
@@ -130,7 +132,7 @@ export default function DashboardLayout({ children }) {
                 }}
                 className="flex items-center gap-3 px-4 py-3 text-white/90 hover:bg-white/5 rounded-xl text-sm font-medium transition-colors cursor-pointer"
               >
-                <item.icon size={18} className="text-[#f59e0b]" />
+                <item.icon size={18} className="text-[#0073b6]" />
                 <span>{item.name}</span>
               </Link>
             ))}
@@ -142,7 +144,7 @@ export default function DashboardLayout({ children }) {
                 className="flex items-center justify-between px-4 py-3 hover:bg-white/5 rounded-xl text-white/90 text-sm font-medium transition-colors cursor-pointer w-full text-left"
               >
                 <div className="flex items-center gap-3">
-                  <Settings size={18} className="text-[#f59e0b]" />
+                  <Settings size={18} className="text-[#0073b6]" />
                   <span>Settings</span>
                 </div>
                 <ChevronDown size={14} className={`text-gray-400 transition-transform ${isSettingsOpen ? 'rotate-180' : ''}`} />
@@ -203,14 +205,16 @@ export default function DashboardLayout({ children }) {
             </button>
             
             <span className="text-white font-bold text-[17px] tracking-tight">
-              {siteName.toLowerCase().includes('kryptex') ? (
-                <>Kryptex <span className="text-[#f59e0b]">Mining</span></>
+              {siteName.toLowerCase().includes('tradeflux') ? (
+                <>TradeFlux<span className="text-[#0073b6]">Bot</span></>
+              ) : siteName.toLowerCase().includes('kryptex') ? (
+                <>Kryptex <span className="text-[#0073b6]">Mining</span></>
               ) : siteName.toLowerCase().includes('mykryptex') ? (
-                <>MyKryptex<span className="text-[#f59e0b]">App</span></>
+                <>MyKryptex<span className="text-[#0073b6]">App</span></>
               ) : siteName.toLowerCase().includes('polychain') ? (
-                <>Polychain<span className="text-[#f59e0b]">Mining</span></>
+                <>Polychain<span className="text-[#0073b6]">Mining</span></>
               ) : siteName.toLowerCase().includes('pallas') ? (
-                <>Pallas<span className="text-[#f59e0b]">Trade</span></>
+                <>Pallas<span className="text-[#0073b6]">Trade</span></>
               ) : (
                 <>{siteName}</>
               )}
@@ -222,7 +226,7 @@ export default function DashboardLayout({ children }) {
               onClick={() => setShowLanguageModal(true)}
               className="flex items-center gap-1 bg-white/5 border border-white/5 px-2.5 py-1 rounded-sm cursor-pointer text-[11px] font-bold text-white/90 shadow-sm hover:bg-white/10 transition-colors"
             >
-              <Globe size={12} className="text-[#f59e0b]" />
+              <Globe size={12} className="text-[#0073b6]" />
               {currentLang}
             </button>
 
@@ -230,7 +234,7 @@ export default function DashboardLayout({ children }) {
               onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} 
               className="flex items-center gap-1 bg-white/5 pl-1 pr-2 py-1 rounded-full cursor-pointer hover:bg-white/10 transition-colors border border-white/5"
             >
-              <div className="w-7 h-7 bg-[#f59e0b] text-[#111827] text-[10px] font-bold rounded-full flex items-center justify-center uppercase leading-none shadow-sm">
+              <div className="w-7 h-7 bg-[#0073b6] text-[#111827] text-[10px] font-bold rounded-full flex items-center justify-center uppercase leading-none shadow-sm">
                 {user?.username ? user.username[0] : "U"}
               </div>
               <ChevronDown size={11} className={`text-gray-400 transition-transform ${isProfileDropdownOpen ? 'rotate-180' : ''}`} />
@@ -346,8 +350,8 @@ export default function DashboardLayout({ children }) {
                       }}
                       className={`w-full flex items-center justify-between p-3 rounded-[12px] border transition-colors ${
                         isSelected 
-                          ? 'border-[#f59e0b] bg-amber-900/20' 
-                          : 'border-white/5 hover:border-[#f59e0b] bg-[#111827]'
+                          ? 'border-[#0073b6] bg-amber-900/20' 
+                          : 'border-white/5 hover:border-[#0073b6] bg-[#111827]'
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -355,7 +359,7 @@ export default function DashboardLayout({ children }) {
                           {lang.language_code.substring(0, 2).toUpperCase()}
                           {isSelected && (
                             <div className="absolute -top-1 -right-1 bg-[#0b0f19] rounded-full">
-                              <CheckCircle2 size={14} className="text-[#f59e0b] fill-[#f59e0b]/20" />
+                              <CheckCircle2 size={14} className="text-[#0073b6] fill-[#0073b6]/20" />
                             </div>
                           )}
                         </div>
@@ -364,7 +368,7 @@ export default function DashboardLayout({ children }) {
                           <p className="text-[10px] text-gray-500 mt-0.5">{lang.language_name}</p>
                         </div>
                       </div>
-                      <ChevronRight size={14} className={isSelected ? 'text-[#f59e0b]' : 'text-gray-600'} />
+                      <ChevronRight size={14} className={isSelected ? 'text-[#0073b6]' : 'text-gray-600'} />
                     </button>
                   );
                 })}

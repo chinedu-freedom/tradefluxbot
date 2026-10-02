@@ -46,7 +46,7 @@ export default function TeamListPage() {
         {/* Content */}
         {isLoading ? (
           <div className="flex flex-col items-center justify-center flex-1 min-h-[300px]">
-            <Loader2 className="w-8 h-8 animate-spin text-[#f59e0b] mb-3" />
+            <Loader2 className="w-8 h-8 animate-spin text-[#0073b6] mb-3" />
             <span className="text-[12px] text-gray-500 font-medium">Loading team members...</span>
           </div>
         ) : teamList.length === 0 ? (

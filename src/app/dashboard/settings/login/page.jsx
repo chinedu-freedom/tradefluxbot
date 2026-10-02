@@ -78,7 +78,7 @@ export default function SecuritySettingsPage() {
 
         {/* Top Icon Area */}
         <div className="flex flex-col items-center mb-6">
-          <div className="w-[60px] h-[60px] bg-[#f59e0b] rounded-[18px] flex items-center justify-center text-white mb-3 shadow-sm">
+          <div className="w-[60px] h-[60px] bg-[#0073b6] rounded-[18px] flex items-center justify-center text-white mb-3 shadow-sm">
             <Shield size={28} className="fill-white" />
           </div>
           <h2 className="text-white/90 text-[18px] font-bold">Change Password</h2>
@@ -91,7 +91,7 @@ export default function SecuritySettingsPage() {
 
             <div className="space-y-1.5">
               <div className="flex items-center gap-1.5 text-white/80 mb-2">
-                <Lock size={14} className="text-[#f59e0b]" />
+                <Lock size={14} className="text-[#0073b6]" />
                 <label className="text-[12px] font-medium">Login Password</label>
               </div>
               <div className="relative">
@@ -100,7 +100,7 @@ export default function SecuritySettingsPage() {
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   placeholder="Enter your withdrawal password"
-                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[10px] pl-3.5 pr-10 py-2.5 text-[13px] text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#f59e0b] transition-all"
+                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[10px] pl-3.5 pr-10 py-2.5 text-[13px] text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#0073b6] transition-all"
                 />
                 <button
                   type="button"
@@ -114,7 +114,7 @@ export default function SecuritySettingsPage() {
 
             <div className="space-y-1.5">
               <div className="flex items-center gap-1.5 text-white/80 mb-2">
-                <Lock size={14} className="text-[#f59e0b]" />
+                <Lock size={14} className="text-[#0073b6]" />
                 <label className="text-[12px] font-medium">New Password</label>
               </div>
               <div className="relative">
@@ -123,7 +123,7 @@ export default function SecuritySettingsPage() {
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="Enter your new password"
-                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[10px] pl-3.5 pr-10 py-2.5 text-[13px] text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#f59e0b] transition-all"
+                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[10px] pl-3.5 pr-10 py-2.5 text-[13px] text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#0073b6] transition-all"
                 />
                 <button
                   type="button"
@@ -137,7 +137,7 @@ export default function SecuritySettingsPage() {
 
             <div className="space-y-1.5 pb-2">
               <div className="flex items-center gap-1.5 text-white/80 mb-2">
-                <CheckCircle2 size={14} className="text-[#f59e0b]" />
+                <CheckCircle2 size={14} className="text-[#0073b6]" />
                 <label className="text-[12px] font-medium">Confirm Password</label>
               </div>
               <div className="relative">
@@ -146,7 +146,7 @@ export default function SecuritySettingsPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Re-enter your new password"
-                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[10px] pl-3.5 pr-10 py-2.5 text-[13px] text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#f59e0b] transition-all"
+                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[10px] pl-3.5 pr-10 py-2.5 text-[13px] text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#0073b6] transition-all"
                 />
                 <button
                   type="button"
@@ -161,7 +161,7 @@ export default function SecuritySettingsPage() {
             <button
               type="submit"
               disabled={isPending}
-              className="w-full bg-[#f59e0b] hover:bg-amber-700 disabled:bg-amber-400 text-white font-bold text-[14px] py-3 rounded-[10px] transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full bg-[#0073b6] hover:bg-amber-700 disabled:bg-amber-400 text-white font-bold text-[14px] py-3 rounded-[10px] transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
             >
               {isPending ? (
                 <>
@@ -172,7 +172,7 @@ export default function SecuritySettingsPage() {
                 <>
                   Save Changes
                   <div className="w-[14px] h-[14px] bg-white rounded-full flex items-center justify-center">
-                    <Check size={10} className="text-[#f59e0b] stroke-[4]" />
+                    <Check size={10} className="text-[#0073b6] stroke-[4]" />
                   </div>
                 </>
               )}
@@ -195,7 +195,7 @@ export default function SecuritySettingsPage() {
               "Avoid using personal information",
               "Don't reuse old passwords"
             ].map((req, idx) => (
-              <li key={idx} className="flex items-center gap-2.5 text-[#f59e0b] text-[12px]">
+              <li key={idx} className="flex items-center gap-2.5 text-[#0073b6] text-[12px]">
                 <Check size={14} className="shrink-0" />
                 <span>{req}</span>
               </li>

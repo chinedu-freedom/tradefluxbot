@@ -111,14 +111,14 @@ export default function WalletPage() {
           </button>
           <h1 className="text-white/90 text-[15px] font-bold">Wallet</h1>
         </div>
-        <Link href="/dashboard/wallet" className="w-8 h-8 bg-[#f59e0b] rounded-xl flex items-center justify-center text-white hover:bg-amber-600 transition-colors shadow-sm cursor-pointer">
+        <Link href="/dashboard/wallet" className="w-8 h-8 bg-[#0073b6] rounded-xl flex items-center justify-center text-white hover:bg-amber-600 transition-colors shadow-sm cursor-pointer">
           <Wallet size={14} />
         </Link>
       </div>
 
       <div className="px-4 pt-4 pb-4 space-y-3 max-w-[480px] mx-auto w-full">
         {/* Balance Card */}
-        <div className="bg-gradient-to-br from-[#d97706] to-[#0f172a] rounded-[16px] p-[16px] text-white shadow-lg relative overflow-hidden border border-white/10">
+        <div className="bg-gradient-to-br from-[#00629b] to-[#0f172a] rounded-[16px] p-[16px] text-white shadow-lg relative overflow-hidden border border-white/10">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl"></div>
 
@@ -162,7 +162,7 @@ export default function WalletPage() {
           <div className="flex gap-2.5 relative z-10">
             <button 
               onClick={() => handleAction("/dashboard/wallet/deposit")}
-              className="cursor-pointer flex-1 bg-[#f59e0b] text-white flex items-center justify-center gap-1.5 py-2 rounded-[8px] text-[11px] font-bold hover:bg-amber-600 transition-colors shadow-sm"
+              className="cursor-pointer flex-1 bg-[#0073b6] text-white flex items-center justify-center gap-1.5 py-2 rounded-[8px] text-[11px] font-bold hover:bg-amber-600 transition-colors shadow-sm"
             >
               <Download size={12} /> Deposit
             </button>
@@ -179,10 +179,10 @@ export default function WalletPage() {
         <div className="bg-[#111827] rounded-[16px] p-[16px] border border-white/5 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] min-h-[180px] flex flex-col">
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-1.5">
-              <Clock size={14} className="text-[#f59e0b]" />
+              <Clock size={14} className="text-[#0073b6]" />
               <h2 className="text-white/90 font-bold text-[13px]">Recent Transactions</h2>
             </div>
-            <Link href="/dashboard/transactions" className="flex items-center gap-1 text-[#f59e0b] text-[10px] font-medium hover:text-amber-400 transition-colors cursor-pointer">
+            <Link href="/dashboard/transactions" className="flex items-center gap-1 text-[#0073b6] text-[10px] font-medium hover:text-amber-400 transition-colors cursor-pointer">
               View All <ArrowRight size={10} />
             </Link>
           </div>

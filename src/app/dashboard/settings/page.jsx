@@ -15,7 +15,7 @@ export default function SettingsPage() {
       label: "My Profile",
       icon: User,
       iconBg: "bg-white/5",
-      iconColor: "text-[#f59e0b]",
+      iconColor: "text-[#0073b6]",
       badge: null,
       href: "/dashboard/settings/profile"
     },
@@ -25,7 +25,7 @@ export default function SettingsPage() {
       label: "Login Settings",
       icon: Key,
       iconBg: "bg-white/5",
-      iconColor: "text-[#f59e0b]",
+      iconColor: "text-[#0073b6]",
       badge: null,
       href: "/dashboard/settings/login"
     },
@@ -35,7 +35,7 @@ export default function SettingsPage() {
       label: "Withdrawal Password",
       icon: Lock,
       iconBg: "bg-white/5",
-      iconColor: "text-[#f59e0b]",
+      iconColor: "text-[#0073b6]",
       badge: hasPin 
         ? { text: "Set", bg: "bg-green-500/10 border border-green-500/20", color: "text-green-400" } 
         : { text: "Not Set", bg: "bg-amber-500/10 border border-amber-500/20", color: "text-amber-400" },
@@ -47,7 +47,7 @@ export default function SettingsPage() {
       label: "Linked Wallets",
       icon: ShieldCheck,
       iconBg: "bg-white/5",
-      iconColor: "text-[#f59e0b]",
+      iconColor: "text-[#0073b6]",
       badge: null,
       href: "/dashboard/settings/wallets"
     }

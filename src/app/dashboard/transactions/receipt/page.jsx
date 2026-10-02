@@ -13,7 +13,7 @@ function ReceiptContent() {
   const receiptRef = useRef(null);
 
   const { data: settingsRes } = useFetchData("/settings", ["platform-settings"]);
-  const siteName = settingsRes?.settings?.site_name || "Kryptex Mining";
+  const siteName = settingsRes?.settings?.site_name || "TradeFluxBot";
   const symbol = settingsRes?.settings?.currency_symbol || "$";
 
   // Extract from URL query params
@@ -162,7 +162,7 @@ function ReceiptContent() {
             )}
           </div>
 
-          <div className="w-full bg-[#0b0f19] border-l-[3px] border-[#f59e0b] rounded-r-[8px] p-3 mt-2 relative z-10">
+          <div className="w-full bg-[#0b0f19] border-l-[3px] border-[#0073b6] rounded-r-[8px] p-3 mt-2 relative z-10">
             <p className="text-gray-400 text-[10px] leading-relaxed">
               Transaction processed by <span className="font-bold text-white/90">{siteName}</span>. Thank you for being a valued member of our platform.
             </p>
@@ -175,13 +175,13 @@ function ReceiptContent() {
         <div className="max-w-[480px] mx-auto w-full flex gap-3">
           <button 
             onClick={handleShareAsImage}
-            className="flex-1 bg-[#0b0f19] border border-white/10 text-[#f59e0b] flex items-center justify-center gap-2 py-3.5 rounded-[12px] text-[13px] font-medium hover:bg-white/5 active:scale-[0.98] transition-all shadow-sm cursor-pointer"
+            className="flex-1 bg-[#0b0f19] border border-white/10 text-[#0073b6] flex items-center justify-center gap-2 py-3.5 rounded-[12px] text-[13px] font-medium hover:bg-white/5 active:scale-[0.98] transition-all shadow-sm cursor-pointer"
           >
             <ImageIcon size={16} /> Share as image
           </button>
           <button 
             onClick={handleShareAsPDF}
-            className="flex-1 bg-[#0b0f19] border border-white/10 text-[#f59e0b] flex items-center justify-center gap-2 py-3.5 rounded-[12px] text-[13px] font-medium hover:bg-white/5 active:scale-[0.98] transition-all shadow-sm cursor-pointer"
+            className="flex-1 bg-[#0b0f19] border border-white/10 text-[#0073b6] flex items-center justify-center gap-2 py-3.5 rounded-[12px] text-[13px] font-medium hover:bg-white/5 active:scale-[0.98] transition-all shadow-sm cursor-pointer"
           >
             <FileText size={16} /> Share as PDF
           </button>

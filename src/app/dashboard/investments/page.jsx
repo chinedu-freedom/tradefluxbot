@@ -25,7 +25,7 @@ export default function MyInvestmentsPage() {
         <div className="flex items-center gap-3">
           <h1 className="text-white/90 text-[15px] font-bold">My Investments</h1>
         </div>
-        <Link href="/dashboard/mining" className="w-8 h-8 bg-[#f59e0b] rounded-md flex items-center justify-center text-white hover:bg-amber-600 transition-colors shadow-sm cursor-pointer">
+        <Link href="/dashboard/mining" className="w-8 h-8 bg-[#0073b6] rounded-md flex items-center justify-center text-white hover:bg-amber-600 transition-colors shadow-sm cursor-pointer">
           <Plus size={16} />
         </Link>
       </div>
@@ -36,7 +36,7 @@ export default function MyInvestmentsPage() {
           <button
             onClick={() => setActiveTab("active")}
             className={`flex-1 py-2 rounded-[8px] text-[13px] font-bold transition-colors cursor-pointer ${activeTab === "active"
-                ? "bg-[#f59e0b] text-white"
+                ? "bg-[#0073b6] text-white"
                 : "text-gray-400 hover:bg-white/5"
               }`}
           >
@@ -45,7 +45,7 @@ export default function MyInvestmentsPage() {
           <button
             onClick={() => setActiveTab("completed")}
             className={`flex-1 py-2 rounded-[8px] text-[13px] font-bold transition-colors cursor-pointer ${activeTab === "completed"
-                ? "bg-[#f59e0b] text-white"
+                ? "bg-[#0073b6] text-white"
                 : "text-gray-400 hover:bg-white/5"
               }`}
           >
@@ -54,7 +54,7 @@ export default function MyInvestmentsPage() {
         </div>
 
         {/* Stats Card */}
-        <div className="bg-[#f59e0b] rounded-lg px-4 py-2 text-white shadow-[0_4px_14px_rgba(59,130,246,0.3)] flex justify-between items-center">
+        <div className="bg-[#0073b6] rounded-lg px-4 py-2 text-white shadow-[0_4px_14px_rgba(59,130,246,0.3)] flex justify-between items-center">
           <div className="text-center flex-1">
             <div className="text-[18px] font-bold tracking-tight">{settings.currency_symbol || "$"}{Number(investments.stats.total_invested).toFixed(2)}</div>
             <div className="text-[10px] text-white/80">Total Invested</div>
@@ -72,7 +72,7 @@ export default function MyInvestmentsPage() {
         {/* Investment List */}
         {isLoading ? (
           <div className="flex justify-center items-center py-10">
-            <div className="w-6 h-6 border-2 border-[#f59e0b] border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-6 h-6 border-2 border-[#0073b6] border-t-transparent rounded-full animate-spin"></div>
           </div>
         ) : currentList.length === 0 ? (
           <div className="flex flex-col items-center justify-center pt-24 pb-12 gap-3">
@@ -94,7 +94,7 @@ export default function MyInvestmentsPage() {
 
               return (
                 <div key={inv.id} className="bg-[#111827] rounded-[16px] p-4 border border-white/5 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-[#f59e0b]"></div>
+                  <div className="absolute top-0 left-0 w-1 h-full bg-[#0073b6]"></div>
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="text-white font-bold text-[15px]">{inv.plan?.name || 'Investment Plan'}</h3>

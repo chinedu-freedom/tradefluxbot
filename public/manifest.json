@@ -1,7 +1,7 @@
 {
-  "name": "Kryptex Mining",
-  "short_name": "Kryptex Mining",
-  "description": "Kryptex Mining - The Ultimate Crypto Asset Mining Platform",
+  "name": "TradeFluxBot",
+  "short_name": "TradeFluxBot",
+  "description": "TradeFluxBot - The Ultimate Crypto Asset Mining & Trading Platform",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b0f19",

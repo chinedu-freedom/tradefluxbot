@@ -34,11 +34,11 @@ export default function WhatsAppModal() {
           <h2 className="text-[18px] font-bold text-white/90 mb-3">Official Information Release</h2>
           
           <p className="text-[13px] text-gray-400 mb-8 leading-relaxed">
-            Join our official WhatsApp group to get the latest news and welfare information about {settingsRes?.settings?.site_name || "Kryptex Mining"} Platform.
+            Join our official WhatsApp group to get the latest news and welfare information about {settingsRes?.settings?.site_name || "TradeFluxBot"} Platform.
           </p>
           
           <Button 
-            className="w-full bg-[#f59e0b] hover:bg-amber-600 text-white rounded-[12px] h-[48px] text-[15px] font-bold shadow-md transition-all"
+            className="w-full bg-[#0073b6] hover:bg-amber-600 text-white rounded-[12px] h-[48px] text-[15px] font-bold shadow-md transition-all"
             onClick={() => {
               setIsOpen(false);
               if (whatsappGroupLink && whatsappGroupLink !== "#") {

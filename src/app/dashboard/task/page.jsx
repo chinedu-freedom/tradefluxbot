@@ -34,7 +34,7 @@ export default function TaskPage() {
             this.resize();
             this.canvas.style.display = 'block';
             this.particles = [];
-            const colors = ['#f59e0b', '#22c55e', '#f59e0b', '#ef4444', '#f59e0b', '#06b6d4'];
+            const colors = ['#0073b6', '#22c55e', '#0073b6', '#ef4444', '#0073b6', '#06b6d4'];
             for (let i = 0; i < count; i++) {
                 this.particles.push({
                     x: Math.random() * this.canvas.width,
@@ -120,19 +120,19 @@ export default function TaskPage() {
         {/* Stats Card */}
         <div className="bg-[#111827] border border-white/5 rounded-[16px] p-5 text-white/90 shadow-sm flex justify-between items-center text-center">
           <div className="flex flex-col gap-1 items-center">
-            <span className="text-[24px] font-bold leading-none text-[#f59e0b]">{totalTasks}</span>
+            <span className="text-[24px] font-bold leading-none text-[#0073b6]">{totalTasks}</span>
             <span className="text-[11px] text-gray-400">Total Tasks</span>
           </div>
           <div className="flex flex-col gap-1 items-center">
-            <span className="text-[24px] font-bold leading-none text-[#f59e0b]">{readyTasks}</span>
+            <span className="text-[24px] font-bold leading-none text-[#0073b6]">{readyTasks}</span>
             <span className="text-[11px] text-gray-400">Ready</span>
           </div>
           <div className="flex flex-col gap-1 items-center">
-            <span className="text-[24px] font-bold leading-none text-[#f59e0b]">{claimedTasks}</span>
+            <span className="text-[24px] font-bold leading-none text-[#0073b6]">{claimedTasks}</span>
             <span className="text-[11px] text-gray-400">Claimed</span>
           </div>
           <div className="flex flex-col gap-1 items-center">
-            <span className="text-[24px] font-bold leading-none text-[#f59e0b]">{todayInvites}</span>
+            <span className="text-[24px] font-bold leading-none text-[#0073b6]">{todayInvites}</span>
             <span className="text-[11px] text-gray-400">Today's Invites</span>
           </div>
         </div>
@@ -152,14 +152,14 @@ export default function TaskPage() {
               return (
                 <div key={task.id} className="bg-[#111827] rounded-[10px] p-4 shadow-sm border border-white/5 flex gap-3">
                   <div className="w-12 h-12 bg-amber-900/20 rounded-[12px] flex items-center justify-center shrink-0">
-                    <Gift className="text-[#f59e0b]" size={20} />
+                    <Gift className="text-[#0073b6]" size={20} />
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <h3 className="text-[14px] font-bold text-white/90 leading-tight mb-0.5">{task.task_name}</h3>
                         <div className="flex items-center gap-2 text-[12px]">
-                          <span className="text-[#f59e0b] font-bold">{settings.currency_symbol || "$"}{Number(task.reward_amount).toFixed(2)}</span>
+                          <span className="text-[#0073b6] font-bold">{settings.currency_symbol || "$"}{Number(task.reward_amount).toFixed(2)}</span>
                           <span className="text-gray-400">{task.required_referrals} invites required</span>
                         </div>
                       </div>
@@ -173,7 +173,7 @@ export default function TaskPage() {
                         <button 
                           onClick={() => handleClaim(task.id)}
                           disabled={claimMutation.isPending}
-                          className="bg-[#f59e0b] text-white px-3 py-1.5 rounded-full cursor-pointer text-[11px] font-bold shrink-0 ml-2 hover:bg-[#d97706] transition-colors disabled:opacity-70"
+                          className="bg-[#0073b6] text-white px-3 py-1.5 rounded-full cursor-pointer text-[11px] font-bold shrink-0 ml-2 hover:bg-[#00629b] transition-colors disabled:opacity-70"
                         >
                           {claimMutation.isPending ? "Claiming..." : "Claim"}
                         </button>
@@ -187,7 +187,7 @@ export default function TaskPage() {
                     
                     <div className="relative w-full h-1.5 bg-white/10 rounded-full overflow-hidden mb-1">
                       <div 
-                        className={`absolute top-0 left-0 h-full ${task.isClaimed ? 'bg-[#10b981]' : 'bg-[#f59e0b]'} transition-all duration-500`} 
+                        className={`absolute top-0 left-0 h-full ${task.isClaimed ? 'bg-[#10b981]' : 'bg-[#0073b6]'} transition-all duration-500`} 
                         style={{ width: `${progressPercent}%` }}
                       ></div>
                     </div>

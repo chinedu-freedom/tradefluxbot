@@ -148,7 +148,7 @@ export default function PaymentSettingsPage() {
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="Enter new withdrawal password"
-                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[12px] pl-3.5 pr-10 py-2.5 text-[13.5px] text-white/90 placeholder-gray-600 focus:outline-none focus:border-[#f59e0b] transition-all"
+                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[12px] pl-3.5 pr-10 py-2.5 text-[13.5px] text-white/90 placeholder-gray-600 focus:outline-none focus:border-[#0073b6] transition-all"
                 />
                 <button
                   type="button"
@@ -169,7 +169,7 @@ export default function PaymentSettingsPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm new withdrawal password"
-                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[12px] pl-3.5 pr-10 py-2.5 text-[13.5px] text-white/90 placeholder-gray-600 focus:outline-none focus:border-[#f59e0b] transition-all"
+                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[12px] pl-3.5 pr-10 py-2.5 text-[13.5px] text-white/90 placeholder-gray-600 focus:outline-none focus:border-[#0073b6] transition-all"
                 />
                 <button
                   type="button"
@@ -214,7 +214,7 @@ export default function PaymentSettingsPage() {
                 placeholder="Enter 6-digit code sent to your email"
                 value={otpCode}
                 onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
-                className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-[12px] px-3.5 py-2.5 text-center text-base tracking-widest font-mono font-bold focus:outline-none focus:border-[#f59e0b] placeholder:tracking-normal placeholder:font-sans placeholder:text-xs placeholder:text-gray-600 transition-all"
+                className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-[12px] px-3.5 py-2.5 text-center text-base tracking-widest font-mono font-bold focus:outline-none focus:border-[#0073b6] placeholder:tracking-normal placeholder:font-sans placeholder:text-xs placeholder:text-gray-600 transition-all"
               />
             </div>
 
@@ -222,7 +222,7 @@ export default function PaymentSettingsPage() {
             <button
               type="submit"
               disabled={isPending || !newPassword || !confirmPassword || otpCode.length < 6}
-              className="w-full flex justify-center items-center gap-2 bg-[#f59e0b] hover:bg-amber-500 disabled:opacity-50 text-black font-bold text-[14px] py-3 rounded-[12px] transition-all shadow-lg cursor-pointer mt-2"
+              className="w-full flex justify-center items-center gap-2 bg-[#0073b6] hover:bg-amber-500 disabled:opacity-50 text-black font-bold text-[14px] py-3 rounded-[12px] transition-all shadow-lg cursor-pointer mt-2"
             >
               {isPending ? (
                 <Loader2 size={18} className="animate-spin text-black" />

@@ -59,10 +59,10 @@ export default function AccountPage() {
     if (userProfile?.language?.language_code) {
       setCurrentLang(userProfile.language.language_code);
     }
-    if (userProfile?.profile_image && !profilePic) {
+    if (userProfile?.profile_image) {
       setProfilePic(userProfile.profile_image);
     }
-  }, [userProfile?.language, userProfile?.profile_image, profilePic]);
+  }, [userProfile?.language, userProfile?.profile_image]);
 
   const handleProfilePicChange = async (e) => {
     const file = e.target.files[0];
@@ -133,7 +133,7 @@ export default function AccountPage() {
       {/* Header */}
       <div className="bg-[#111827] px-4 pt-4 pb-3 flex justify-between items-center rounded-b-[20px] shadow-sm z-10 sticky top-0 border-b border-white/5">
         <div className="flex items-center gap-2">
-          <label className="relative w-9 h-9 bg-gradient-to-br from-[#d97706] to-[#0f172a] rounded-full flex items-center justify-center text-white shadow-sm cursor-pointer overflow-hidden group shrink-0">
+          <label className="relative w-9 h-9 bg-gradient-to-br from-[#00629b] to-[#0f172a] rounded-full flex items-center justify-center text-white shadow-sm cursor-pointer overflow-hidden group shrink-0">
             {profilePic ? (
               <img src={profilePic} alt="Profile" className="w-full h-full object-cover" />
             ) : (
@@ -159,12 +159,12 @@ export default function AccountPage() {
             onClick={() => setShowLanguageModal(true)}
             className="flex items-center gap-1 bg-white/5 border border-white/5 px-2.5 py-1 rounded-sm cursor-pointer text-[11px] font-bold text-white/90 shadow-sm hover:bg-white/10 transition-colors"
           >
-            <Globe size={13} className="text-[#f59e0b]" />
+            <Globe size={13} className="text-[#0073b6]" />
             {currentLang}
           </button>
           <Link 
             href="/dashboard/help"
-            className="bg-white/5 p-1.5 rounded-full text-[#f59e0b] hover:bg-white/10 transition-colors cursor-pointer"
+            className="bg-white/5 p-1.5 rounded-full text-[#0073b6] hover:bg-white/10 transition-colors cursor-pointer"
           >
             <MessageCircle size={16} />
           </Link>
@@ -174,7 +174,7 @@ export default function AccountPage() {
       <div className="px-4 pt-4 pb-4 space-y-4 max-w-[480px] mx-auto w-full">
         
         {/* Total Balance Card */}
-        <div className="bg-gradient-to-br from-[#d97706] to-[#0f172a] rounded-2xl p-[18px] text-white shadow-lg relative overflow-hidden border border-white/10">
+        <div className="bg-gradient-to-br from-[#00629b] to-[#0f172a] rounded-2xl p-[18px] text-white shadow-lg relative overflow-hidden border border-white/10">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-2xl pointer-events-none"></div>
           
@@ -201,7 +201,7 @@ export default function AccountPage() {
           </div>
 
           <div className="flex gap-2.5 relative z-10">
-            <Link href="/dashboard/wallet/deposit" className="flex-1 bg-[#f59e0b] text-white py-2 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5 hover:bg-amber-600 transition-colors shadow-md cursor-pointer">
+            <Link href="/dashboard/wallet/deposit" className="flex-1 bg-[#0073b6] text-white py-2 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5 hover:bg-amber-600 transition-colors shadow-md cursor-pointer">
               <Wallet size={16} />
               Deposit
             </Link>
@@ -215,7 +215,7 @@ export default function AccountPage() {
         {/* Account Statistics */}
         <div className="bg-[#111827] rounded-[24px] p-6 border border-white/5 shadow-xl relative overflow-hidden">
           {/* Subtle gold gradient accent on top border */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#f59e0b]/40 to-transparent"></div>
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0073b6]/40 to-transparent"></div>
           
           <h2 className="text-[#9ca3af] font-bold text-[12px] tracking-[0.2em] text-center uppercase mb-6">
             Account Statistics
@@ -351,7 +351,7 @@ export default function AccountPage() {
           <div className="relative bg-[#111827] w-full max-w-[480px] mx-auto rounded-t-[24px] overflow-hidden flex flex-col h-[75vh] animate-in slide-in-from-bottom-full duration-300">
             
             {/* Header */}
-            <div className="bg-[#f59e0b] p-5 flex justify-between items-center text-white">
+            <div className="bg-[#0073b6] p-5 flex justify-between items-center text-white">
               <h2 className="text-[16px] font-bold">Select Language</h2>
               <button 
                 onClick={() => setShowLanguageModal(false)}
@@ -409,8 +409,8 @@ export default function AccountPage() {
                     }}
                     className={`w-full flex items-center justify-between p-3 rounded-[12px] border transition-colors ${
                       isSelected 
-                        ? 'border-[#f59e0b] bg-white/5' 
-                        : 'border-white/5 hover:border-[#f59e0b] bg-transparent'
+                        ? 'border-[#0073b6] bg-white/5' 
+                        : 'border-white/5 hover:border-[#0073b6] bg-transparent'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -427,7 +427,7 @@ export default function AccountPage() {
                         <div className="text-[11px] text-gray-400">{lang.language_name}</div>
                       </div>
                     </div>
-                    <ChevronRight size={16} className={isSelected ? 'text-[#f59e0b]' : 'text-gray-300'} />
+                    <ChevronRight size={16} className={isSelected ? 'text-[#0073b6]' : 'text-gray-300'} />
                   </button>
                 );
               })}
@@ -441,7 +441,7 @@ export default function AccountPage() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none p-4">
           <div className="bg-[#111827] rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.12)] px-5 py-4 flex items-center gap-4 animate-in fade-in zoom-in-95 duration-300 pointer-events-auto max-w-[320px] w-full border border-white/5">
             <div className="w-12 h-12 bg-white/5 rounded-[14px] flex items-center justify-center shrink-0">
-              <div className="w-6 h-6 bg-[#f59e0b] rounded-full flex items-center justify-center text-white">
+              <div className="w-6 h-6 bg-[#0073b6] rounded-full flex items-center justify-center text-white">
                 <Info size={14} strokeWidth={3} />
               </div>
             </div>

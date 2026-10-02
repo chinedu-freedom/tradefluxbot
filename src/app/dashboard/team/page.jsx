@@ -45,7 +45,7 @@ export default function TeamPage() {
         </div>
         <button
           onClick={() => router.push('/dashboard/invite')}
-          className="w-9 h-9 bg-[#f59e0b] rounded-[10px] flex items-center justify-center text-white shadow-sm hover:bg-[#f59e0b] transition-colors cursor-pointer"
+          className="w-9 h-9 bg-[#0073b6] rounded-[10px] flex items-center justify-center text-white shadow-sm hover:bg-[#0073b6] transition-colors cursor-pointer"
         >
           <Mail size={16} fill="currentColor" />
         </button>
@@ -54,7 +54,7 @@ export default function TeamPage() {
       <div className="px-4 space-y-4 max-w-[480px] mx-auto w-full pb-10">
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-[#f59e0b] mb-3" />
+            <Loader2 className="w-8 h-8 animate-spin text-[#0073b6] mb-3" />
             <span className="text-[12px] text-gray-500 font-medium">Loading team data...</span>
           </div>
         ) : (
@@ -70,11 +70,11 @@ export default function TeamPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col items-center">
-                  <div className="text-[28px] font-bold mb-1 leading-none text-[#f59e0b]">{overview.new_members_today}</div>
+                  <div className="text-[28px] font-bold mb-1 leading-none text-[#0073b6]">{overview.new_members_today}</div>
                   <div className="text-gray-400 text-[11px]">New Members</div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="text-[28px] font-bold mb-1 leading-none text-[#f59e0b]">{settings.currency_symbol || "$"}{Number(overview.new_earnings_today).toFixed(2)}</div>
+                  <div className="text-[28px] font-bold mb-1 leading-none text-[#0073b6]">{settings.currency_symbol || "$"}{Number(overview.new_earnings_today).toFixed(2)}</div>
                   <div className="text-gray-400 text-[11px]">New Earnings</div>
                 </div>
               </div>
@@ -130,7 +130,7 @@ export default function TeamPage() {
                 </div>
                 <button
                   onClick={() => router.push('/dashboard/team/list')}
-                  className="text-[#f59e0b] text-[13px] cursor-pointer hover:underline font-medium"
+                  className="text-[#0073b6] text-[13px] cursor-pointer hover:underline font-medium"
                 >
                   View Team List
                 </button>
@@ -147,19 +147,19 @@ export default function TeamPage() {
                   <h3 className="text-white/90 text-[13px] font-bold mb-4">Level 1</h3>
                   <div className="grid grid-cols-4 text-center">
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l1.valid_members}/{l1.total_members}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l1.valid_members}/{l1.total_members}</div>
                       <div className="text-gray-400 text-[10px]">Valid Members</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l1.commission_rate}%</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l1.commission_rate}%</div>
                       <div className="text-gray-400 text-[10px]">Commission</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l1.total_deposits || 0).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l1.total_deposits || 0).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Deposit</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l1.total_earnings).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l1.total_earnings).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Earnings</div>
                     </div>
                   </div>
@@ -172,19 +172,19 @@ export default function TeamPage() {
                   <h3 className="text-white/90 text-[13px] font-bold mb-4">Level 2</h3>
                   <div className="grid grid-cols-4 text-center">
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l2.valid_members}/{l2.total_members}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l2.valid_members}/{l2.total_members}</div>
                       <div className="text-gray-400 text-[10px]">Valid Members</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l2.commission_rate}%</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l2.commission_rate}%</div>
                       <div className="text-gray-400 text-[10px]">Commission</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l2.total_deposits || 0).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l2.total_deposits || 0).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Deposit</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l2.total_earnings).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l2.total_earnings).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Earnings</div>
                     </div>
                   </div>
@@ -197,19 +197,19 @@ export default function TeamPage() {
                   <h3 className="text-white/90 text-[13px] font-bold mb-4">Level 3</h3>
                   <div className="grid grid-cols-4 text-center">
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l3.valid_members}/{l3.total_members}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l3.valid_members}/{l3.total_members}</div>
                       <div className="text-gray-400 text-[10px]">Valid Members</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l3.commission_rate}%</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l3.commission_rate}%</div>
                       <div className="text-gray-400 text-[10px]">Commission</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l3.total_deposits || 0).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l3.total_deposits || 0).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Deposit</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l3.total_earnings).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l3.total_earnings).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Earnings</div>
                     </div>
                   </div>
@@ -222,19 +222,19 @@ export default function TeamPage() {
                   <h3 className="text-white/90 text-[13px] font-bold mb-4">Level 4</h3>
                   <div className="grid grid-cols-4 text-center">
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l4.valid_members}/{l4.total_members}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l4.valid_members}/{l4.total_members}</div>
                       <div className="text-gray-400 text-[10px]">Valid Members</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{l4.commission_rate}%</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{l4.commission_rate}%</div>
                       <div className="text-gray-400 text-[10px]">Commission</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l4.total_deposits || 0).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l4.total_deposits || 0).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Deposit</div>
                     </div>
                     <div>
-                      <div className="text-[#f59e0b] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l4.total_earnings).toFixed(2)}</div>
+                      <div className="text-[#0073b6] text-[16px] font-bold mb-1">{settings.currency_symbol || "$"}{Number(l4.total_earnings).toFixed(2)}</div>
                       <div className="text-gray-400 text-[10px]">Total Earnings</div>
                     </div>
                   </div>

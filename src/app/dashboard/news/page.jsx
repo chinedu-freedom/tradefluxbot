@@ -69,7 +69,7 @@ export default function NewsPage() {
 
               <div className="flex justify-between items-center mt-2 border-t border-white/5 pt-2">
                 <div className="text-[10px] text-gray-400 font-medium">{news.views} views</div>
-                <div className="flex items-center text-[#f59e0b] text-[10px] font-bold">
+                <div className="flex items-center text-[#0073b6] text-[10px] font-bold">
                   Read Full Article <ChevronRight size={12} className="ml-0.5" />
                 </div>
               </div>

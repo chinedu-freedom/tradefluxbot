@@ -25,8 +25,8 @@ function VerifyEmailContent() {
 
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
-  const siteName = settings.site_name || "Kryptex Mining";
-  const siteLogo = settings.platform_logo || null;
+  const siteName = settings.site_name || "TradeFluxBot";
+  const siteLogo = settings.platform_logo || "/logo.jpeg";
 
   useEffect(() => {
     setIsMounted(true);
@@ -101,7 +101,7 @@ function VerifyEmailContent() {
   if (!isMounted || isLoadingSettings) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-[#f59e0b] rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-gray-100 border-t-[#0073b6] rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -259,7 +259,7 @@ function VerifyEmailContent() {
                 <img src={siteLogo} alt="Logo" className="w-full h-full object-contain" />
               </div>
             ) : (
-              <div className="w-16 h-16 bg-gradient-to-br from-[#d97706] to-[#0f172a] rounded-full flex items-center justify-center shadow-sm mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#00629b] to-[#0f172a] rounded-full flex items-center justify-center shadow-sm mb-4">
                 <div className="text-white text-xs font-bold tracking-wider">
                   {siteName.substring(0, 4).toUpperCase()}
                 </div>

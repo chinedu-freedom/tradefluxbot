@@ -27,7 +27,7 @@ export default function BottomNav() {
               <div className="absolute inset-0 bg-[#0b0f19] rounded-full scale-[1.3] -z-10"></div>
               <Link
                 href={item.href}
-                className="w-[48px] h-[48px] bg-[#f59e0b] rounded-full flex items-center justify-center shadow-md text-white hover:bg-[#d97706] transition-colors cursor-pointer"
+                className="w-[48px] h-[48px] bg-[#0073b6] rounded-full flex items-center justify-center shadow-md text-white hover:bg-[#00629b] transition-colors cursor-pointer"
               >
                 <item.icon size={20} fill="currentColor" strokeWidth={1.5} className="text-white" />
               </Link>
@@ -40,13 +40,13 @@ export default function BottomNav() {
             key={index}
             href={item.href}
             className={`flex flex-col items-center justify-center w-[60px] gap-1 cursor-pointer ${
-              isActive ? "text-[#f59e0b]" : "text-gray-400"
+              isActive ? "text-[#0073b6]" : "text-gray-400"
             }`}
            >
             <item.icon 
               size={20} 
               strokeWidth={isActive ? 2 : 1.5}
-              className={isActive ? "text-[#f59e0b]" : "text-gray-400"} 
+              className={isActive ? "text-[#0073b6]" : "text-gray-400"} 
               fill={isActive && item.name !== "Mining Plans" ? "currentColor" : "none"}
             />
             <span className="text-[9px] font-medium tracking-tight">{item.name}</span>

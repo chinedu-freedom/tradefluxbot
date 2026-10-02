@@ -205,7 +205,7 @@ export default function TransactionsPage() {
         {/* Summary Cards */}
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-[#111827] rounded-[16px] p-4 border border-white/5 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.05)] flex flex-col">
-            <div className="w-8 h-8 bg-amber-900/20 rounded-[8px] flex items-center justify-center text-[#f59e0b] mb-3">
+            <div className="w-8 h-8 bg-amber-900/20 rounded-[8px] flex items-center justify-center text-[#0073b6] mb-3">
               <BarChart2 size={16} />
             </div>
             <div className="text-white/90 font-bold text-[18px] mb-0.5">
@@ -215,7 +215,7 @@ export default function TransactionsPage() {
           </div>
 
           <div className="bg-[#111827] rounded-[16px] p-4 border border-white/5 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.05)] flex flex-col">
-            <div className="w-8 h-8 bg-amber-900/20 rounded-[8px] flex items-center justify-center text-[#f59e0b] mb-3">
+            <div className="w-8 h-8 bg-amber-900/20 rounded-[8px] flex items-center justify-center text-[#0073b6] mb-3">
               <FileText size={16} />
             </div>
             <div className="text-white/90 font-bold text-[18px] mb-0.5">{totalCount}</div>
@@ -233,7 +233,7 @@ export default function TransactionsPage() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`cursor-pointer flex items-center gap-1.5 px-3.5 py-2 rounded-full whitespace-nowrap text-[12px] font-bold transition-all ${isActive
-                    ? 'bg-[#f59e0b] text-white shadow-[0_4px_10px_rgba(37,99,235,0.25)]'
+                    ? 'bg-[#0073b6] text-white shadow-[0_4px_10px_rgba(37,99,235,0.25)]'
                     : 'bg-[#111827] text-gray-400 border border-white/5 hover:bg-white/5'
                   }`}
               >
@@ -248,7 +248,7 @@ export default function TransactionsPage() {
         <div className="mt-2">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-10">
-              <Loader2 className="w-8 h-8 animate-spin text-[#f59e0b] mb-2" />
+              <Loader2 className="w-8 h-8 animate-spin text-[#0073b6] mb-2" />
               <span className="text-[12px] text-gray-500">Loading transactions...</span>
             </div>
           ) : filteredTransactions.length > 0 ? (

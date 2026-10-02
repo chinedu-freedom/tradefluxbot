@@ -232,7 +232,7 @@ function WithdrawContent() {
                       {selectedCrypto.icon ? (
                         <img src={selectedCrypto.icon} alt={selectedCrypto.name} className="w-full h-full object-cover" />
                       ) : (
-                        <span className="text-[10px] font-bold text-[#f59e0b]">{selectedCrypto.symbol.charAt(0)}</span>
+                        <span className="text-[10px] font-bold text-[#0073b6]">{selectedCrypto.symbol.charAt(0)}</span>
                       )}
                     </div>
                     <span className="font-bold text-[13.5px] uppercase text-white/90">
@@ -270,7 +270,7 @@ function WithdrawContent() {
                           {crypto.icon ? (
                             <img src={crypto.icon} alt={crypto.name} className="w-full h-full object-cover" />
                           ) : (
-                            <span className="text-[10px] font-bold text-[#f59e0b]">{crypto.symbol.charAt(0)}</span>
+                            <span className="text-[10px] font-bold text-[#0073b6]">{crypto.symbol.charAt(0)}</span>
                           )}
                         </div>
                         <div>
@@ -279,7 +279,7 @@ function WithdrawContent() {
                         </div>
                       </div>
                       {selectedCrypto?.id === crypto.id && (
-                        <Check size={14} className="text-[#f59e0b]" />
+                        <Check size={14} className="text-[#0073b6]" />
                       )}
                     </button>
                   ))
@@ -361,7 +361,7 @@ function WithdrawContent() {
               <button
                 type="button"
                 onClick={() => setAmount(totalBalance.toString())}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 bg-[#f59e0b] hover:bg-amber-600 text-black text-[10px] font-extrabold px-3 py-1.5 rounded-[8px] transition-colors cursor-pointer"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 bg-[#0073b6] hover:bg-amber-600 text-black text-[10px] font-extrabold px-3 py-1.5 rounded-[8px] transition-colors cursor-pointer"
               >
                 MAX
               </button>
@@ -393,26 +393,26 @@ function WithdrawContent() {
             {customRules.length > 0 ? (
               customRules.map((line, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">•</span>
+                  <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">•</span>
                   <p className="leading-relaxed font-medium text-gray-300" dangerouslySetInnerHTML={{ __html: line }} />
                 </li>
               ))
             ) : (
               <>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">▲</span>
+                  <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">▲</span>
                   <p className="leading-relaxed font-medium">Minimum withdrawal amount is ${minWithdrawal}</p>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">▲</span>
+                  <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">▲</span>
                   <p className="leading-relaxed font-medium">All withdrawals require authorization with your Withdrawal Password</p>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">▲</span>
+                  <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">▲</span>
                   <p className="leading-relaxed font-medium">Withdrawals are processed exclusively to your verified linked wallet addresses</p>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <span className="text-[#f59e0b] font-bold shrink-0 mt-0.5">▲</span>
+                  <span className="text-[#0073b6] font-bold shrink-0 mt-0.5">▲</span>
                   <p className="leading-relaxed font-medium">Transactions cannot be reversed once processed on the blockchain</p>
                 </li>
               </>
@@ -471,7 +471,7 @@ function WithdrawContent() {
                   placeholder="Enter your withdrawal password"
                   value={withdrawalPassword}
                   onChange={(e) => setWithdrawalPassword(e.target.value)}
-                  className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-lg pl-3 pr-10 py-2.5 text-xs focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] placeholder:text-gray-600"
+                  className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-lg pl-3 pr-10 py-2.5 text-xs focus:outline-none focus:border-[#0073b6] focus:ring-1 focus:ring-[#0073b6] placeholder:text-gray-600"
                   autoFocus
                 />
                 <button

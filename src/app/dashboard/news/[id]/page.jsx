@@ -12,7 +12,7 @@ export default function NewsArticlePage() {
   const article = data?.news;
 
   const { data: settingsRes } = useFetchData("/settings", ["platform-settings"]);
-  const siteName = settingsRes?.settings?.site_name || "Kryptex Mining";
+  const siteName = settingsRes?.settings?.site_name || "TradeFluxBot";
 
   return (
     <div className="flex flex-col h-full bg-[#0b0f19] overflow-y-auto  [&::-webkit-scrollbar]:hidden">
@@ -32,13 +32,13 @@ export default function NewsArticlePage() {
       <div className="px-4 pt-4 pb-4 max-w-[480px] mx-auto w-full flex-1">
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
-            <Loader2 className="w-8 h-8 animate-spin mb-3 text-[#f59e0b]" />
+            <Loader2 className="w-8 h-8 animate-spin mb-3 text-[#0073b6]" />
             <p className="text-sm font-medium">Loading article...</p>
           </div>
         ) : error || !article ? (
           <div className="flex flex-col items-center justify-center py-20 text-red-400 bg-[#111827] rounded-[16px] border border-white/5 shadow-sm">
             <p className="text-sm font-medium">Article not found</p>
-            <Link href="/dashboard/news" className="mt-4 text-[#f59e0b] text-xs font-bold underline cursor-pointer">
+            <Link href="/dashboard/news" className="mt-4 text-[#0073b6] text-xs font-bold underline cursor-pointer">
               Return to News
             </Link>
           </div>
@@ -68,7 +68,7 @@ export default function NewsArticlePage() {
                 <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
               </div>
             ) : (
-              <div className="w-full h-[140px] bg-gradient-to-r from-[#d97706] to-[#0f172a] rounded-xl mb-6 shadow-inner relative overflow-hidden flex items-center justify-center border border-white/5">
+              <div className="w-full h-[140px] bg-gradient-to-r from-[#00629b] to-[#0f172a] rounded-xl mb-6 shadow-inner relative overflow-hidden flex items-center justify-center border border-white/5">
                 <div className="absolute inset-0 bg-black/20"></div>
                 <span className="text-white/50 text-[10px] font-bold tracking-widest uppercase z-10 flex items-center gap-2">
                   <ImageIcon size={14} /> {siteName} News

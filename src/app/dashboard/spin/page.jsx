@@ -85,7 +85,7 @@ export default function SpinPage() {
             this.resize();
             this.canvas.style.display = 'block';
             this.particles = [];
-            const colors = ['#f59e0b', '#22c55e', '#f59e0b', '#ef4444', '#f59e0b', '#06b6d4'];
+            const colors = ['#0073b6', '#22c55e', '#0073b6', '#ef4444', '#0073b6', '#06b6d4'];
             for (let i = 0; i < count; i++) {
                 this.particles.push({
                     x: Math.random() * this.canvas.width,
@@ -328,7 +328,7 @@ export default function SpinPage() {
               </div>
               <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Deposit Balance</span>
             </div>
-            <div className="text-[20px] font-bold text-[#f59e0b]">
+            <div className="text-[20px] font-bold text-[#0073b6]">
               {settings.currency_symbol || "$"}{Number(currentBalance).toFixed(2)}
             </div>
           </div>
@@ -338,7 +338,7 @@ export default function SpinPage() {
               <Ticket className="text-gray-400 w-4 h-4" />
               <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Free Spins</span>
             </div>
-            <div className="text-[20px] font-bold text-[#f59e0b]">
+            <div className="text-[20px] font-bold text-[#0073b6]">
               {freeSpins}
             </div>
           </div>
@@ -356,7 +356,7 @@ export default function SpinPage() {
         <div className="flex justify-center items-center py-6">
           <div className="relative w-[320px] h-[320px]">
             {/* The Outer Blue Ring with Lights */}
-            <div className="absolute inset-0 rounded-full bg-[#f59e0b] shadow-[0_0_20px_rgba(59,130,246,0.3)] border-4 border-[#60a5fa] overflow-hidden">
+            <div className="absolute inset-0 rounded-full bg-[#0073b6] shadow-[0_0_20px_rgba(59,130,246,0.3)] border-4 border-[#60a5fa] overflow-hidden">
               {/* Fake lights using CSS repeating conic gradient or positioned dots */}
               <div className="absolute inset-1 rounded-full border border-amber-400/50"></div>
               {Array.from({ length: 24 }).map((_, i) => (
@@ -430,10 +430,10 @@ export default function SpinPage() {
             {/* Center Start Button */}
             <div 
               onClick={handleSpin}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80px] h-[80px] bg-gradient-to-b from-[#94a3b8] to-[#475569] rounded-full flex items-center justify-center cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.3)] z-30 border-[4px] border-[#f59e0b] hover:scale-105 active:scale-95 transition-all"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80px] h-[80px] bg-gradient-to-b from-[#94a3b8] to-[#475569] rounded-full flex items-center justify-center cursor-pointer shadow-[0_0_15px_rgba(0,0,0,0.3)] z-30 border-[4px] border-[#0073b6] hover:scale-105 active:scale-95 transition-all"
             >
               {/* Pointer Triangle */}
-              <div className="absolute -top-[14px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[16px] border-b-[#f59e0b]"></div>
+              <div className="absolute -top-[14px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[16px] border-b-[#0073b6]"></div>
               
               <span className="text-white font-bold text-[16px] drop-shadow-md">Start</span>
             </div>
@@ -444,7 +444,7 @@ export default function SpinPage() {
         {/* Recent Wins */}
         <div className="mt-8">
           <div className="flex items-center gap-2 mb-4 px-1">
-            <History className="text-[#f59e0b]" size={18} />
+            <History className="text-[#0073b6]" size={18} />
             <h3 className="font-bold text-white/90 text-[16px]">Recent Wins</h3>
           </div>
 
@@ -484,10 +484,10 @@ export default function SpinPage() {
       {/* Floating Help Button */}
       <button 
         onClick={() => setIsHowToPlayOpen(true)}
-        className="fixed bottom-[80px] right-4 w-[60px] h-[60px] bg-[#f59e0b] rounded-full shadow-[0_4px_16px_rgba(59,130,246,0.5)] flex items-center justify-center z-40 hover:scale-105 active:scale-95 transition-transform"
+        className="fixed bottom-[80px] right-4 w-[60px] h-[60px] bg-[#0073b6] rounded-full shadow-[0_4px_16px_rgba(59,130,246,0.5)] flex items-center justify-center z-40 hover:scale-105 active:scale-95 transition-transform"
       >
         <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-          <span className="text-[#f59e0b] font-bold text-[18px]">?</span>
+          <span className="text-[#0073b6] font-bold text-[18px]">?</span>
         </div>
       </button>
 
@@ -517,8 +517,8 @@ export default function SpinPage() {
                 <p className="text-[#64748b] text-[14px]">
                   {resultData.message}
                 </p>
-                <p className="text-[#f59e0b] text-[13px] mt-2 mb-4 flex items-center gap-1.5 font-medium">
-                  <span className="w-4 h-4 rounded-full bg-[#f59e0b] text-white flex items-center justify-center text-[10px]">✓</span>
+                <p className="text-[#0073b6] text-[13px] mt-2 mb-4 flex items-center gap-1.5 font-medium">
+                  <span className="w-4 h-4 rounded-full bg-[#0073b6] text-white flex items-center justify-center text-[10px]">✓</span>
                   Added to withdrawable balance
                 </p>
               </div>
@@ -535,7 +535,7 @@ export default function SpinPage() {
             
             <button 
               onClick={() => setShowResultModal(false)}
-              className="w-full bg-gradient-to-br from-[#f59e0b] to-[#2563eb] text-white font-semibold rounded-[12px] py-3.5 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(59,130,246,0.3)] active:translate-y-0 transition-all"
+              className="w-full bg-gradient-to-br from-[#0073b6] to-[#2563eb] text-white font-semibold rounded-[12px] py-3.5 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(59,130,246,0.3)] active:translate-y-0 transition-all"
             >
               Continue
             </button>

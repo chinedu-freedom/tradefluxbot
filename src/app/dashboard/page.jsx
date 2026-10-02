@@ -93,9 +93,9 @@ export default function DashboardPage() {
 
   const { data: settingsResponse } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
-  const siteName = settings.site_name || "Kryptex Mining";
-  const siteLogo = settings.platform_logo || null;
-  const referralDomain = typeof window !== "undefined" ? window.location.origin : "https://kryptexmining.com";
+  const siteName = settings.site_name || "TradeFluxBot";
+  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const referralDomain = typeof window !== "undefined" ? window.location.origin : "https://tradefluxbot.com";
 
   const [liveMarketData, setLiveMarketData] = useState([]);
   const [activeMarketTab, setActiveMarketTab] = useState("Hot");
@@ -371,9 +371,9 @@ export default function DashboardPage() {
       <div className="px-4 pt-4 pb-4 space-y-3">
         
         {/* Balance Card (Portfolio Overview) */}
-        <div className="bg-gradient-to-br from-[#d97706]/20 via-[#111827]/90 to-[#0b0f19] rounded-[24px] p-6 text-white shadow-xl relative overflow-hidden border border-amber-500/20 flex flex-col items-center text-center">
+        <div className="bg-gradient-to-br from-[#00629b]/20 via-[#111827]/90 to-[#0b0f19] rounded-[24px] p-6 text-white shadow-xl relative overflow-hidden border border-amber-500/20 flex flex-col items-center text-center">
           {/* Background decoration */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#f59e0b]/5 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#0073b6]/5 rounded-full blur-3xl -z-10"></div>
           
           <div className="flex items-center justify-center gap-1.5 mb-1.5 relative z-10 w-full">
             <span className="text-gray-400 text-[11px] font-bold tracking-wider uppercase">Portfolio Overview</span>
@@ -400,7 +400,7 @@ export default function DashboardPage() {
           <div className="relative z-10 w-full flex justify-center">
             <Link 
               href="/dashboard/wallet/deposit" 
-              className="bg-[#f59e0b] hover:bg-[#d97706] text-[#111827] text-[12px] font-bold px-8 py-2 rounded-lg transition-all shadow-md active:scale-[0.98]"
+              className="bg-[#0073b6] hover:bg-[#00629b] text-[#111827] text-[12px] font-bold px-8 py-2 rounded-lg transition-all shadow-md active:scale-[0.98]"
             >
               Top up
             </Link>
@@ -408,9 +408,9 @@ export default function DashboardPage() {
         </div>
 
         {/* Statistics Card (Deposits, Withdrawals, Earnings) */}
-        <div className="bg-gradient-to-br from-[#d97706]/20 via-[#111827]/90 to-[#0b0f19] rounded-[24px] p-5 text-white shadow-xl relative overflow-hidden border border-amber-500/20 flex flex-col gap-4">
+        <div className="bg-gradient-to-br from-[#00629b]/20 via-[#111827]/90 to-[#0b0f19] rounded-[24px] p-5 text-white shadow-xl relative overflow-hidden border border-amber-500/20 flex flex-col gap-4">
           {/* Background decoration */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#f59e0b]/5 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#0073b6]/5 rounded-full blur-3xl -z-10"></div>
           
           <div className="flex items-center justify-center gap-1.5 relative z-10 w-full mb-1">
             <span className="text-gray-400 text-[11px] font-bold tracking-wider uppercase">Account Statistics</span>
@@ -521,7 +521,7 @@ export default function DashboardPage() {
                     onClick={() => setActiveMarketTab(tab)}
                     className={`px-4 py-1.5 rounded-[8px] text-[12px] font-semibold border transition-all cursor-pointer whitespace-nowrap ${
                       isActive 
-                        ? "border-[#f59e0b] text-[#f59e0b] bg-amber-500/5 shadow-sm shadow-amber-500/5" 
+                        ? "border-[#0073b6] text-[#0073b6] bg-amber-500/5 shadow-sm shadow-amber-500/5" 
                         : "border-white/5 text-gray-400 bg-white/5 hover:bg-white/10"
                     }`}
                   >
@@ -608,27 +608,27 @@ export default function DashboardPage() {
                 </defs>
 
                 {/* Lines radiating from the central bright node (140, 60) */}
-                <line x1="140" y1="60" x2="140" y2="30" stroke="#f59e0b" strokeWidth="1" opacity="0.3" />
-                <line x1="140" y1="60" x2="60" y2="35" stroke="#f59e0b" strokeWidth="1" opacity="0.15" />
-                <line x1="140" y1="60" x2="45" y2="65" stroke="#f59e0b" strokeWidth="1" opacity="0.15" />
-                <line x1="140" y1="60" x2="75" y2="85" stroke="#f59e0b" strokeWidth="1" opacity="0.15" />
-                <line x1="140" y1="60" x2="220" y2="35" stroke="#f59e0b" strokeWidth="1" opacity="0.15" />
-                <line x1="140" y1="60" x2="240" y2="70" stroke="#f59e0b" strokeWidth="1" opacity="0.15" />
-                <line x1="140" y1="60" x2="225" y2="90" stroke="#f59e0b" strokeWidth="1" opacity="0.15" />
+                <line x1="140" y1="60" x2="140" y2="30" stroke="#0073b6" strokeWidth="1" opacity="0.3" />
+                <line x1="140" y1="60" x2="60" y2="35" stroke="#0073b6" strokeWidth="1" opacity="0.15" />
+                <line x1="140" y1="60" x2="45" y2="65" stroke="#0073b6" strokeWidth="1" opacity="0.15" />
+                <line x1="140" y1="60" x2="75" y2="85" stroke="#0073b6" strokeWidth="1" opacity="0.15" />
+                <line x1="140" y1="60" x2="220" y2="35" stroke="#0073b6" strokeWidth="1" opacity="0.15" />
+                <line x1="140" y1="60" x2="240" y2="70" stroke="#0073b6" strokeWidth="1" opacity="0.15" />
+                <line x1="140" y1="60" x2="225" y2="90" stroke="#0073b6" strokeWidth="1" opacity="0.15" />
 
                 {/* Left Group Nodes */}
-                <circle cx="60" cy="35" r="7" fill="#d97706" opacity="0.8" filter="url(#glow-gold)" />
-                <circle cx="45" cy="65" r="7" fill="#d97706" opacity="0.8" filter="url(#glow-gold)" />
-                <circle cx="75" cy="85" r="7" fill="#d97706" opacity="0.8" filter="url(#glow-gold)" />
+                <circle cx="60" cy="35" r="7" fill="#00629b" opacity="0.8" filter="url(#glow-gold)" />
+                <circle cx="45" cy="65" r="7" fill="#00629b" opacity="0.8" filter="url(#glow-gold)" />
+                <circle cx="75" cy="85" r="7" fill="#00629b" opacity="0.8" filter="url(#glow-gold)" />
 
                 {/* Middle Group Nodes */}
-                <circle cx="140" cy="30" r="7" fill="#d97706" opacity="0.8" filter="url(#glow-gold)" />
-                <circle cx="140" cy="60" r="9" fill="#f59e0b" filter="url(#glow-gold)" />
+                <circle cx="140" cy="30" r="7" fill="#00629b" opacity="0.8" filter="url(#glow-gold)" />
+                <circle cx="140" cy="60" r="9" fill="#0073b6" filter="url(#glow-gold)" />
 
                 {/* Right Group Nodes */}
-                <circle cx="220" cy="35" r="7" fill="#d97706" opacity="0.8" filter="url(#glow-gold)" />
-                <circle cx="240" cy="70" r="7" fill="#d97706" opacity="0.8" filter="url(#glow-gold)" />
-                <circle cx="225" cy="90" r="7" fill="#d97706" opacity="0.8" filter="url(#glow-gold)" />
+                <circle cx="220" cy="35" r="7" fill="#00629b" opacity="0.8" filter="url(#glow-gold)" />
+                <circle cx="240" cy="70" r="7" fill="#00629b" opacity="0.8" filter="url(#glow-gold)" />
+                <circle cx="225" cy="90" r="7" fill="#00629b" opacity="0.8" filter="url(#glow-gold)" />
               </svg>
             </div>
 
@@ -652,7 +652,7 @@ export default function DashboardPage() {
                       toast.success("Referral link copied!");
                     }
                   }}
-                  className="bg-[#f59e0b] hover:bg-[#d97706] text-[#111827] text-[12px] font-bold px-4 py-2 rounded-lg transition-all active:scale-95 cursor-pointer"
+                  className="bg-[#0073b6] hover:bg-[#00629b] text-[#111827] text-[12px] font-bold px-4 py-2 rounded-lg transition-all active:scale-95 cursor-pointer"
                 >
                   Copy
                 </button>
@@ -679,7 +679,7 @@ export default function DashboardPage() {
                   }}
                   className={`px-3 py-1 rounded-[6px] text-[11px] font-bold border transition-all cursor-pointer whitespace-nowrap ${
                     isActive 
-                      ? "border-[#f59e0b] text-[#f59e0b] bg-amber-500/5" 
+                      ? "border-[#0073b6] text-[#0073b6] bg-amber-500/5" 
                       : "border-white/5 text-gray-400 bg-white/5 hover:bg-white/10"
                   }`}
                 >
@@ -822,7 +822,7 @@ export default function DashboardPage() {
             className="bg-[#111827] border border-white/10 rounded-[20px] w-full max-w-[340px] p-5 shadow-xl animate-in fade-in zoom-in-95 duration-200"
           >
             <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center text-[#f59e0b] mb-4">
+              <div className="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center text-[#0073b6] mb-4">
                 <Gift size={24} />
               </div>
               <h3 className="text-white/90 text-[16px] font-bold mb-2">Events & Rewards</h3>
@@ -831,7 +831,7 @@ export default function DashboardPage() {
               </p>
               <button
                 onClick={() => setShowEventsModal(false)}
-                className="w-full py-2.5 rounded-[12px] bg-[#f59e0b] hover:bg-[#d97706] text-[#111827] font-bold text-[13px] transition-colors cursor-pointer"
+                className="w-full py-2.5 rounded-[12px] bg-[#0073b6] hover:bg-[#00629b] text-[#111827] font-bold text-[13px] transition-colors cursor-pointer"
               >
                 Close
               </button>

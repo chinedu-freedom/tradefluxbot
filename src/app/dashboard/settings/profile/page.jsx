@@ -26,11 +26,24 @@ export default function MyProfilePage() {
         
         {isLoading ? (
           <div className="flex flex-col items-center justify-center py-10">
-             <Loader2 className="animate-spin text-[#f59e0b] mb-2" size={32} />
+             <Loader2 className="animate-spin text-[#0073b6] mb-2" size={32} />
              <p className="text-gray-500 text-sm">Loading profile...</p>
           </div>
         ) : (
           <>
+            {/* Profile Avatar Card */}
+            <div className="bg-[#111827] rounded-[16px] border border-white/5 p-5 flex flex-col items-center justify-center text-center shadow-sm">
+              <div className="w-20 h-20 rounded-full border-2 border-[#0073b6]/40 overflow-hidden mb-3 bg-gradient-to-br from-[#00629b] to-[#0f172a] flex items-center justify-center text-white text-2xl font-bold shadow-md shrink-0">
+                {user.profile_image ? (
+                  <img src={user.profile_image} alt={user.full_name || "Profile"} className="w-full h-full object-cover" />
+                ) : (
+                  (user.full_name || user.email || "U").charAt(0).toUpperCase()
+                )}
+              </div>
+              <h2 className="text-white/95 font-bold text-base">{user.full_name || "User"}</h2>
+              <p className="text-gray-400 text-xs mt-0.5">{user.email || ""}</p>
+            </div>
+
             {/* Main Details Card */}
             <div className="bg-[#111827] rounded-[16px] border border-white/5 shadow-sm overflow-hidden">
               <div className="flex flex-col divide-y divide-white/5">
@@ -38,7 +51,7 @@ export default function MyProfilePage() {
                 <div className="p-4">
                   <div className="text-gray-400 text-[10px] font-medium tracking-wide uppercase mb-1.5">Full Name</div>
                   <div className="flex items-center gap-3">
-                    <User size={16} className="text-[#f59e0b] fill-[#f59e0b]/20" />
+                    <User size={16} className="text-[#0073b6] fill-[#0073b6]/20" />
                     <span className="text-white/90 text-[14px]">{user.full_name || "N/A"}</span>
                   </div>
                 </div>
@@ -47,7 +60,7 @@ export default function MyProfilePage() {
                 <div className="p-4">
                   <div className="text-gray-400 text-[10px] font-medium tracking-wide uppercase mb-1.5">Email Address</div>
                   <div className="flex items-center gap-3">
-                    <Mail size={16} className="text-[#f59e0b] fill-[#f59e0b]/20" />
+                    <Mail size={16} className="text-[#0073b6] fill-[#0073b6]/20" />
                     <span className="text-white/90 text-[14px]">{user.email || "N/A"}</span>
                   </div>
                 </div>
@@ -56,7 +69,7 @@ export default function MyProfilePage() {
                 <div className="p-4">
                   <div className="text-gray-400 text-[10px] font-medium tracking-wide uppercase mb-1.5">Country</div>
                   <div className="flex items-center gap-3">
-                    <Globe size={16} className="text-[#f59e0b] fill-[#f59e0b]/20" />
+                    <Globe size={16} className="text-[#0073b6] fill-[#0073b6]/20" />
                     <span className="text-white/90 text-[14px]">{user.country?.country_name || "N/A"}</span>
                   </div>
                 </div>
@@ -65,7 +78,7 @@ export default function MyProfilePage() {
                 <div className="p-4">
                   <div className="text-gray-400 text-[10px] font-medium tracking-wide uppercase mb-1.5">Referral Code</div>
                   <div className="flex items-center gap-3">
-                    <Share2 size={16} className="text-[#f59e0b]" />
+                    <Share2 size={16} className="text-[#0073b6]" />
                     <span className="text-white/90 text-[14px]">{user.referral_code || "N/A"}</span>
                   </div>
                 </div>
@@ -74,7 +87,7 @@ export default function MyProfilePage() {
                 <div className="p-4">
                   <div className="text-gray-400 text-[10px] font-medium tracking-wide uppercase mb-1.5">Member Since</div>
                   <div className="flex items-center gap-3">
-                    <Calendar size={16} className="text-[#f59e0b]" />
+                    <Calendar size={16} className="text-[#0073b6]" />
                     <span className="text-white/90 text-[14px]">{user.created_at ? new Date(user.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : "N/A"}</span>
                   </div>
                 </div>

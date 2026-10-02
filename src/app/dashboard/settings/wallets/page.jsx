@@ -169,7 +169,7 @@ export default function LinkedWalletsPage() {
         {/* Link Wallet Form */}
         <div className="bg-[#111827] rounded-[16px] border border-white/5 p-4 space-y-4">
           <h3 className="text-white/90 text-sm font-bold flex items-center gap-2">
-            <Plus size={16} className="text-[#f59e0b]" /> Link New Wallet Address
+            <Plus size={16} className="text-[#0073b6]" /> Link New Wallet Address
           </h3>
 
           <form onSubmit={handleOpenConfirm} className="space-y-3.5">
@@ -178,7 +178,7 @@ export default function LinkedWalletsPage() {
               <select
                 value={selectedCryptoId}
                 onChange={(e) => setSelectedCryptoId(e.target.value)}
-                className="w-full bg-[#0b0f19] border border-white/5 text-white/90 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b]"
+                className="w-full bg-[#0b0f19] border border-white/5 text-white/90 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:border-[#0073b6] focus:ring-1 focus:ring-[#0073b6]"
               >
                 <option value="">-- Choose Coin & Network --</option>
                 {cryptos.map((coin) => (
@@ -196,7 +196,7 @@ export default function LinkedWalletsPage() {
                 placeholder="Paste your address here"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full bg-[#0b0f19] border border-white/5 text-white/90 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] placeholder:text-gray-600"
+                className="w-full bg-[#0b0f19] border border-white/5 text-white/90 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:border-[#0073b6] focus:ring-1 focus:ring-[#0073b6] placeholder:text-gray-600"
               />
             </div>
 
@@ -207,14 +207,14 @@ export default function LinkedWalletsPage() {
                 placeholder="e.g. My Trust Wallet, Binance"
                 value={label}
                 onChange={(e) => setLabel(e.target.value)}
-                className="w-full bg-[#0b0f19] border border-white/5 text-white/90 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] placeholder:text-gray-600"
+                className="w-full bg-[#0b0f19] border border-white/5 text-white/90 rounded-lg px-3 py-2.5 text-xs focus:outline-none focus:border-[#0073b6] focus:ring-1 focus:ring-[#0073b6] placeholder:text-gray-600"
               />
             </div>
 
             <button
               type="submit"
               disabled={isLinking || isLoading || !selectedCryptoId || !address.trim()}
-              className="w-full bg-[#f59e0b] text-black font-bold py-2.5 rounded-lg hover:bg-amber-500 transition-colors text-xs disabled:opacity-50 flex items-center justify-center cursor-pointer mt-2 shadow-md"
+              className="w-full bg-[#0073b6] text-black font-bold py-2.5 rounded-lg hover:bg-amber-500 transition-colors text-xs disabled:opacity-50 flex items-center justify-center cursor-pointer mt-2 shadow-md"
             >
               {isLinking ? <Loader2 className="w-4 h-4 animate-spin" /> : "Link Wallet Address"}
             </button>
@@ -227,7 +227,7 @@ export default function LinkedWalletsPage() {
 
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-10 text-gray-500">
-              <Loader2 className="w-6 h-6 animate-spin text-[#f59e0b]" />
+              <Loader2 className="w-6 h-6 animate-spin text-[#0073b6]" />
             </div>
           ) : wallets.length === 0 ? (
             <div className="bg-[#111827] rounded-[16px] border border-white/5 py-10 text-center text-gray-500 text-xs">
@@ -241,7 +241,7 @@ export default function LinkedWalletsPage() {
                   className="bg-[#111827] rounded-[16px] border border-white/5 p-3 flex justify-between items-center gap-4"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0 text-[#f59e0b] border border-amber-500/20">
+                    <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center shrink-0 text-[#0073b6] border border-amber-500/20">
                       <Wallet size={15} />
                     </div>
                     <div className="min-w-0">
@@ -278,10 +278,10 @@ export default function LinkedWalletsPage() {
           <div className="bg-[#111827] border border-white/10 rounded-[24px] w-full max-w-[390px] p-6 space-y-4 shadow-2xl relative overflow-hidden animate-in fade-in zoom-in duration-200">
             
             {/* Background decoration */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#f59e0b]/10 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#0073b6]/10 rounded-full blur-3xl -z-10"></div>
 
             <div className="flex flex-col items-center text-center space-y-1.5">
-              <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-full flex items-center justify-center text-[#f59e0b]">
+              <div className="w-12 h-12 bg-amber-500/10 border border-amber-500/20 rounded-full flex items-center justify-center text-[#0073b6]">
                 <ShieldCheck size={24} />
               </div>
               <h3 className="text-white text-base font-bold">2-Step Security Verification</h3>
@@ -328,7 +328,7 @@ export default function LinkedWalletsPage() {
                 placeholder="Enter 6-digit code"
                 value={otpCode}
                 onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
-                className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-lg px-3 py-2.5 text-center text-base tracking-widest font-mono font-bold focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] placeholder:tracking-normal placeholder:font-sans placeholder:text-xs placeholder:text-gray-600"
+                className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-lg px-3 py-2.5 text-center text-base tracking-widest font-mono font-bold focus:outline-none focus:border-[#0073b6] focus:ring-1 focus:ring-[#0073b6] placeholder:tracking-normal placeholder:font-sans placeholder:text-xs placeholder:text-gray-600"
                 autoFocus
               />
             </div>
@@ -344,7 +344,7 @@ export default function LinkedWalletsPage() {
                   placeholder="Enter withdrawal password"
                   value={withdrawalPassword}
                   onChange={(e) => setWithdrawalPassword(e.target.value)}
-                  className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-lg pl-3 pr-10 py-2.5 text-xs focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] placeholder:text-gray-600"
+                  className="w-full bg-[#0b0f19] border border-white/10 text-white rounded-lg pl-3 pr-10 py-2.5 text-xs focus:outline-none focus:border-[#0073b6] focus:ring-1 focus:ring-[#0073b6] placeholder:text-gray-600"
                 />
                 <button
                   type="button"
@@ -372,7 +372,7 @@ export default function LinkedWalletsPage() {
                 type="button"
                 onClick={handleConfirmLink}
                 disabled={isLinking || !withdrawalPassword || otpCode.length < 6}
-                className="flex-1 bg-[#f59e0b] hover:bg-amber-500 text-black text-xs font-bold py-2.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50 flex items-center justify-center shadow-lg"
+                className="flex-1 bg-[#0073b6] hover:bg-amber-500 text-black text-xs font-bold py-2.5 rounded-lg transition-colors cursor-pointer disabled:opacity-50 flex items-center justify-center shadow-lg"
               >
                 {isLinking ? <Loader2 className="w-4 h-4 animate-spin text-black" /> : "Verify & Save"}
               </button>

@@ -15,6 +15,7 @@ import { toast } from "sonner";
 export default function VerifyOtpPage() {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputsRef = useRef([]);
 
@@ -24,8 +25,8 @@ export default function VerifyOtpPage() {
 
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
-  const siteName = settings.site_name || "Kryptex Mining";
-  const siteLogo = settings.platform_logo || null;
+  const siteName = settings.site_name || "TradeFluxBot";
+  const siteLogo = settings.platform_logo || "/logo.jpeg";
 
   useEffect(() => {
     setIsMounted(true);
@@ -37,7 +38,7 @@ export default function VerifyOtpPage() {
   if (!isMounted || isLoadingSettings) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-[#f59e0b] rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-gray-100 border-t-[#0073b6] rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -91,12 +92,17 @@ export default function VerifyOtpPage() {
       {/* Left side (OTP Form) */}
       <div className="min-h-screen flex flex-col justify-center items-center w-full lg:w-1/2 px-8 lg:px-16 py-12">
         <div className="w-full max-w-sm text-center flex flex-col items-center">
-          {siteLogo ? (
+          {siteLogo && !imgError ? (
             <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm flex items-center justify-center bg-gray-50 border border-gray-100 mb-4">
-              <img src={siteLogo} alt="Logo" className="w-full h-full object-contain" />
+              <img 
+                src={siteLogo} 
+                alt="Logo" 
+                className="w-full h-full object-contain" 
+                onError={() => setImgError(true)}
+              />
             </div>
           ) : (
-            <div className="w-16 h-16 bg-gradient-to-br from-[#d97706] to-[#0f172a] rounded-full flex items-center justify-center shadow-sm mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#0073b6] to-[#0f172a] rounded-full flex items-center justify-center shadow-sm mb-4">
               <div className="text-white text-xs font-bold tracking-wider">
                 {siteName.substring(0, 4).toUpperCase()}
               </div>

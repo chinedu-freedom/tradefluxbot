@@ -35,7 +35,7 @@ export default function InstallGuideModal() {
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center text-[#f59e0b]">
+              <div className="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center text-[#0073b6]">
                 <Download size={18} />
               </div>
               <h2 className="text-[17px] font-bold text-white/90">Install App</h2>
@@ -63,7 +63,7 @@ export default function InstallGuideModal() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-[9px] text-[12px] font-semibold transition-all cursor-pointer ${
                     isActive
-                      ? "bg-[#f59e0b] text-[#111827] shadow-md"
+                      ? "bg-[#0073b6] text-[#111827] shadow-md"
                       : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -83,16 +83,16 @@ export default function InstallGuideModal() {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       1
                     </div>
                     <div className="text-[13px]">
-                      Open the app in <strong className="text-white">Safari</strong> and tap the <strong className="text-white flex inline-flex items-center gap-1">Share <Share size={13} className="inline text-[#f59e0b]" /></strong> icon in the bottom menu.
+                      Open the app in <strong className="text-white">Safari</strong> and tap the <strong className="text-white flex inline-flex items-center gap-1">Share <Share size={13} className="inline text-[#0073b6]" /></strong> icon in the bottom menu.
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       2
                     </div>
                     <div className="text-[13px]">
@@ -101,7 +101,7 @@ export default function InstallGuideModal() {
                   </div>
 
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       3
                     </div>
                     <div className="text-[13px]">
@@ -119,16 +119,16 @@ export default function InstallGuideModal() {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       1
                     </div>
                     <div className="text-[13px]">
-                      Tap the <strong className="text-white flex inline-flex items-center gap-1">Menu <MoreVertical size={13} className="inline text-[#f59e0b]" /></strong> icon (three vertical dots) in the top-right corner of Chrome.
+                      Tap the <strong className="text-white flex inline-flex items-center gap-1">Menu <MoreVertical size={13} className="inline text-[#0073b6]" /></strong> icon (three vertical dots) in the top-right corner of Chrome.
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       2
                     </div>
                     <div className="text-[13px]">
@@ -137,7 +137,7 @@ export default function InstallGuideModal() {
                   </div>
 
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       3
                     </div>
                     <div className="text-[13px]">
@@ -155,7 +155,7 @@ export default function InstallGuideModal() {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       1
                     </div>
                     <div className="text-[13px]">
@@ -164,7 +164,7 @@ export default function InstallGuideModal() {
                   </div>
 
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       2
                     </div>
                     <div className="text-[13px]">
@@ -173,7 +173,7 @@ export default function InstallGuideModal() {
                   </div>
 
                   <div className="flex items-start gap-3 bg-white/5 p-3 rounded-xl border border-white/5">
-                    <div className="w-6 h-6 bg-[#f59e0b]/10 text-[#f59e0b] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#0073b6]/10 text-[#0073b6] rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 mt-0.5">
                       3
                     </div>
                     <div className="text-[13px]">
@@ -188,7 +188,7 @@ export default function InstallGuideModal() {
           {/* Action button */}
           <button
             onClick={() => setIsOpen(false)}
-            className="w-full mt-6 bg-[#f59e0b] hover:bg-amber-600 text-white rounded-[12px] h-[44px] text-[14px] font-bold shadow-md transition-all cursor-pointer"
+            className="w-full mt-6 bg-[#0073b6] hover:bg-amber-600 text-white rounded-[12px] h-[44px] text-[14px] font-bold shadow-md transition-all cursor-pointer"
           >
             Got it, thanks!
           </button>

@@ -117,7 +117,7 @@ export default function DepositModal() {
                 <div 
                   key={crypto.id}
                   onClick={() => handleSelectCrypto(crypto)}
-                  className="p-3 rounded-[12px] border border-white/5 bg-white/5 hover:bg-white/10 hover:border-[#f59e0b] shadow-sm cursor-pointer transition-all flex flex-col items-center justify-center text-center group aspect-square select-none"
+                  className="p-3 rounded-[12px] border border-white/5 bg-white/5 hover:bg-white/10 hover:border-[#0073b6] shadow-sm cursor-pointer transition-all flex flex-col items-center justify-center text-center group aspect-square select-none"
                 >
                   {/* Square shape for icon */}
                   <div className="w-11 h-11 bg-[#0b0f19] group-hover:bg-[#111827] rounded-[10px] flex items-center justify-center border border-white/5 shrink-0 overflow-hidden shadow-inner p-1.5 mb-2">

@@ -70,8 +70,8 @@ export default function AuthenticationSettingsPage() {
           {/* Top Status Area */}
           <div className="flex flex-col items-center text-center">
             {step < 3 ? (
-              <div className="w-[72px] h-[72px] bg-[#fef3c7] rounded-full flex items-center justify-center text-[#d97706] mb-4">
-                <ShieldAlert size={36} className="fill-[#d97706] text-[#fef3c7]" />
+              <div className="w-[72px] h-[72px] bg-[#fef3c7] rounded-full flex items-center justify-center text-[#00629b] mb-4">
+                <ShieldAlert size={36} className="fill-[#00629b] text-[#fef3c7]" />
               </div>
             ) : (
               <div className="w-[72px] h-[72px] bg-[#d1fae5] rounded-full flex items-center justify-center text-[#059669] mb-4">
@@ -93,8 +93,8 @@ export default function AuthenticationSettingsPage() {
             {/* Pill Badge */}
             <div className="mb-8">
               {step < 3 ? (
-                <div className="inline-flex items-center gap-1.5 bg-[#fef3c7] text-[#d97706] px-4 py-2 rounded-full text-[13px] font-bold">
-                  <AlertTriangle size={16} className="fill-[#d97706] text-white" />
+                <div className="inline-flex items-center gap-1.5 bg-[#fef3c7] text-[#00629b] px-4 py-2 rounded-full text-[13px] font-bold">
+                  <AlertTriangle size={16} className="fill-[#00629b] text-white" />
                   Unverified
                 </div>
               ) : (
@@ -111,7 +111,7 @@ export default function AuthenticationSettingsPage() {
             <button
               onClick={handleSendCode}
               disabled={isSending}
-              className="w-full bg-[#f59e0b] hover:bg-amber-700 disabled:bg-amber-400 flex items-center justify-center gap-2 text-white font-bold text-[15px] py-3.5 rounded-[12px] transition-colors shadow-sm cursor-pointer"
+              className="w-full bg-[#0073b6] hover:bg-amber-700 disabled:bg-amber-400 flex items-center justify-center gap-2 text-white font-bold text-[15px] py-3.5 rounded-[12px] transition-colors shadow-sm cursor-pointer"
             >
               {isSending ?  <Loader2 size={18} className="animate-spin" /> : "Send Verification Code"     }
             </button>
@@ -126,7 +126,7 @@ export default function AuthenticationSettingsPage() {
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   placeholder="0 0 0 0 0 0"
-                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[12px] px-4 py-4 text-[16px] text-center tracking-[0.4em] font-medium text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#f59e0b] transition-all"
+                  className="w-full bg-[#0b0f19] border border-white/10 rounded-[12px] px-4 py-4 text-[16px] text-center tracking-[0.4em] font-medium text-white/90 placeholder-gray-500 focus:outline-none focus:border-[#0073b6] transition-all"
                   maxLength={6}
                 />
               </div>
@@ -134,7 +134,7 @@ export default function AuthenticationSettingsPage() {
               <button
                 type="submit"
                 disabled={isVerifying}
-                className="w-full flex items-center justify-center gap-2 bg-[#f59e0b] hover:bg-amber-700 disabled:bg-amber-400 text-white font-bold text-[15px] py-3.5 rounded-[12px] transition-colors shadow-sm cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 bg-[#0073b6] hover:bg-amber-700 disabled:bg-amber-400 text-white font-bold text-[15px] py-3.5 rounded-[12px] transition-colors shadow-sm cursor-pointer"
               >
                 {isVerifying ? <Loader2 size={18} className="animate-spin" /> : "Verify"}
               </button>
@@ -146,7 +146,7 @@ export default function AuthenticationSettingsPage() {
                     type="button" 
                     onClick={handleSendCode} 
                     disabled={isSending}
-                    className="text-[#f59e0b] hover:underline disabled:opacity-50 font-medium ml-1 cursor-pointer"
+                    className="text-[#0073b6] hover:underline disabled:opacity-50 font-medium ml-1 cursor-pointer"
                   >
                     Resend
                   </button>

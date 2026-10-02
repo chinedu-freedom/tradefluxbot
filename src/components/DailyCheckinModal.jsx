@@ -33,7 +33,7 @@ export default function DailyCheckinModal() {
             this.resize();
             this.canvas.style.display = 'block';
             this.particles = [];
-            const colors = ['#f59e0b', '#22c55e', '#f59e0b', '#ef4444', '#f59e0b', '#06b6d4'];
+            const colors = ['#0073b6', '#22c55e', '#0073b6', '#ef4444', '#0073b6', '#06b6d4'];
             for (let i = 0; i < count; i++) {
                 this.particles.push({
                     x: Math.random() * this.canvas.width,
@@ -196,7 +196,7 @@ export default function DailyCheckinModal() {
             <Button 
               onClick={handleClaim} 
               disabled={claimMutation.isPending}
-              className="w-full bg-[#f59e0b] hover:bg-[#f59e0b] text-white rounded-xl py-6 font-semibold shadow-md shadow-amber-500/20 transition-all active:scale-[0.98]"
+              className="w-full bg-[#0073b6] hover:bg-[#0073b6] text-white rounded-xl py-6 font-semibold shadow-md shadow-amber-500/20 transition-all active:scale-[0.98]"
             >
               {claimMutation.isPending ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -225,17 +225,17 @@ function RewardCard({ reward, isNext, settings }) {
     <div className={`
       flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all
       ${isClaimed ? 'border-[#10b981] bg-[#10b981]/10' : ''}
-      ${isAvailable ? 'border-[#f59e0b] bg-[#f59e0b]/10 shadow-sm scale-105 z-10 relative' : ''}
+      ${isAvailable ? 'border-[#0073b6] bg-[#0073b6]/10 shadow-sm scale-105 z-10 relative' : ''}
       ${reward.status === 'locked' && !isNext ? 'border-white/5 bg-white/5' : ''}
     `}>
       <span className={`text-[11px] font-bold tracking-wider uppercase mb-2 
-        ${isClaimed ? 'text-[#10b981]' : isAvailable ? 'text-[#f59e0b]' : 'text-gray-400'}
+        ${isClaimed ? 'text-[#10b981]' : isAvailable ? 'text-[#0073b6]' : 'text-gray-400'}
       `}>
         Day {reward.day}
       </span>
       
       <div className={`w-8 h-8 rounded-full flex items-center justify-center mb-2 shadow-sm
-        ${isClaimed ? 'bg-[#10b981] text-white' : isAvailable ? 'bg-[#f59e0b] text-white' : 'bg-white/10 text-gray-400'}
+        ${isClaimed ? 'bg-[#10b981] text-white' : isAvailable ? 'bg-[#0073b6] text-white' : 'bg-white/10 text-gray-400'}
       `}>
         {isClaimed ? (
           <Check className="w-5 h-5" strokeWidth={3} />
@@ -247,7 +247,7 @@ function RewardCard({ reward, isNext, settings }) {
       </div>
       
       <span className={`text-xs font-bold 
-        ${isClaimed ? 'text-[#10b981]' : isAvailable ? 'text-[#f59e0b]' : 'text-gray-400'}
+        ${isClaimed ? 'text-[#10b981]' : isAvailable ? 'text-[#0073b6]' : 'text-gray-400'}
       `}>
         +{settings?.currency_symbol || "$"}{parseFloat(reward.amount).toFixed(2)}
       </span>

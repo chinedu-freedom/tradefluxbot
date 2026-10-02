@@ -62,7 +62,7 @@ export default function HelpCenterPage() {
       answer: "Yes, your account is highly secure. We use industry-standard encryption protocols, and you can further secure your account by verifying your email and setting up a secure withdrawal pin.",
       icon: ShieldCheck,
       iconBg: "bg-[#ede9fe]",
-      iconColor: "text-[#f59e0b]"
+      iconColor: "text-[#0073b6]"
     },
     {
       id: 4,
@@ -98,7 +98,7 @@ export default function HelpCenterPage() {
 
         {/* Top Hero */}
         <div className="flex flex-col items-center text-center">
-          <div className="w-[60px] h-[60px] bg-[#f59e0b] rounded-[18px] flex items-center justify-center mb-4 shadow-[0_4px_12px_rgba(139,92,246,0.3)]">
+          <div className="w-[60px] h-[60px] bg-[#0073b6] rounded-[18px] flex items-center justify-center mb-4 shadow-[0_4px_12px_rgba(139,92,246,0.3)]">
             <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white font-bold text-[18px]">
               ?
             </div>
@@ -124,7 +124,7 @@ export default function HelpCenterPage() {
         {/* Contact Support */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <MessageCircle size={14} className="text-[#f59e0b] fill-[#f59e0b]/20" />
+            <MessageCircle size={14} className="text-[#0073b6] fill-[#0073b6]/20" />
             <h3 className="text-white/90 text-[13px] font-bold">Contact Support</h3>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -132,8 +132,8 @@ export default function HelpCenterPage() {
               onClick={() => handleLink(settings.telegram_support)}
               className="cursor-pointer bg-[#111827] rounded-[16px] border border-white/5 shadow-md p-4 flex flex-col items-center text-center hover:bg-white/5 transition-colors"
             >
-              <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-full flex items-center justify-center text-[#f59e0b] mb-2.5">
-                <Send size={20} className="fill-[#f59e0b] -ml-0.5" />
+              <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-full flex items-center justify-center text-[#0073b6] mb-2.5">
+                <Send size={20} className="fill-[#0073b6] -ml-0.5" />
               </div>
               <span className="text-white/90 text-[13px] font-bold mb-0.5">Telegram</span>
               <span className="text-gray-400 text-[11px]">Fast response</span>
@@ -154,7 +154,7 @@ export default function HelpCenterPage() {
         {/* Join Our Community */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Users size={14} className="text-[#f59e0b] fill-[#f59e0b]/20" />
+            <Users size={14} className="text-[#0073b6] fill-[#0073b6]/20" />
             <h3 className="text-white/90 text-[13px] font-bold">Join Our Community</h3>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -162,8 +162,8 @@ export default function HelpCenterPage() {
               onClick={() => handleLink(settings.telegram_community)}
               className="cursor-pointer bg-[#111827] rounded-[16px] border border-white/5 shadow-md p-4 flex flex-col items-center text-center hover:bg-white/5 transition-colors"
             >
-              <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-[14px] flex items-center justify-center text-[#f59e0b] mb-2.5">
-                <Send size={20} className="fill-[#f59e0b] -ml-0.5" />
+              <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-[14px] flex items-center justify-center text-[#0073b6] mb-2.5">
+                <Send size={20} className="fill-[#0073b6] -ml-0.5" />
               </div>
               <span className="text-white/90 text-[13px] font-bold mb-0.5">Channel</span>
               <span className="text-gray-400 text-[11px]">News & Updates</span>
@@ -172,8 +172,8 @@ export default function HelpCenterPage() {
               onClick={() => handleLink(settings.telegram_group)}
               className="cursor-pointer bg-[#111827] rounded-[16px] border border-white/5 shadow-md p-4 flex flex-col items-center text-center hover:bg-white/5 transition-colors"
             >
-              <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-[14px] flex items-center justify-center text-[#f59e0b] mb-2.5">
-                <Users size={20} className="fill-[#f59e0b]" />
+              <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-[14px] flex items-center justify-center text-[#0073b6] mb-2.5">
+                <Users size={20} className="fill-[#0073b6]" />
               </div>
               <span className="text-white/90 text-[13px] font-bold mb-0.5">Whatsapp Group</span>
               <span className="text-gray-400 text-[11px]">Community</span>
@@ -184,7 +184,7 @@ export default function HelpCenterPage() {
         {/* Quick Actions */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Zap size={14} className="text-[#f59e0b] fill-[#f59e0b]" />
+            <Zap size={14} className="text-[#0073b6] fill-[#0073b6]" />
             <h3 className="text-white/90 text-[13px] font-bold">Quick Actions</h3>
           </div>
           <div className="grid grid-cols-4 gap-2">
@@ -199,8 +199,8 @@ export default function HelpCenterPage() {
                 onClick={action.action}
                 className="cursor-pointer bg-[#111827] rounded-[12px] border border-white/5 shadow-md p-2.5 flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-colors"
               >
-                <div className="text-[#f59e0b]">
-                  <action.icon size={18} className="fill-[#f59e0b]/20" />
+                <div className="text-[#0073b6]">
+                  <action.icon size={18} className="fill-[#0073b6]/20" />
                 </div>
                 <span className="text-gray-400 text-[10px] font-medium">{action.label}</span>
               </button>
@@ -211,7 +211,7 @@ export default function HelpCenterPage() {
         {/* Frequently Asked Questions */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <FileText size={14} className="text-[#f59e0b] fill-[#f59e0b]/20" />
+            <FileText size={14} className="text-[#0073b6] fill-[#0073b6]/20" />
             <h3 className="text-white/90 text-[13px] font-bold">Frequently Asked Questions</h3>
           </div>
           <div className="space-y-2.5">
@@ -225,7 +225,7 @@ export default function HelpCenterPage() {
               return (
                 <div 
                   key={faq.id} 
-                  className={`w-full bg-[#111827] rounded-[16px] border ${isOpen ? 'border-[#f59e0b] shadow-[0_2px_12px_-4px_rgba(139,92,246,0.15)]' : 'border-white/5 shadow-md'} transition-all text-left overflow-hidden`}
+                  className={`w-full bg-[#111827] rounded-[16px] border ${isOpen ? 'border-[#0073b6] shadow-[0_2px_12px_-4px_rgba(139,92,246,0.15)]' : 'border-white/5 shadow-md'} transition-all text-left overflow-hidden`}
                 >
                   <button 
                     onClick={() => setOpenFaq(isOpen ? null : faq.id)}
@@ -240,7 +240,7 @@ export default function HelpCenterPage() {
                         <p className="text-gray-400 text-[11px]">{faq.desc}</p>
                       </div>
                     </div>
-                    {isOpen ? <ChevronUp size={16} className="text-[#f59e0b] shrink-0 ml-2" /> : <ChevronDown size={16} className="text-gray-500 shrink-0 ml-2" />}
+                    {isOpen ? <ChevronUp size={16} className="text-[#0073b6] shrink-0 ml-2" /> : <ChevronDown size={16} className="text-gray-500 shrink-0 ml-2" />}
                   </button>
                   
                   {isOpen && (
@@ -257,7 +257,7 @@ export default function HelpCenterPage() {
         </div>
 
         {/* Bottom Support Banner */}
-        <div className="bg-[#f59e0b] rounded-[20px] p-6 text-center text-white shadow-[0_8px_20px_rgba(37,99,235,0.25)] relative overflow-hidden mt-8">
+        <div className="bg-[#0073b6] rounded-[20px] p-6 text-center text-white shadow-[0_8px_20px_rgba(37,99,235,0.25)] relative overflow-hidden mt-8">
           {/* Decorative subtle circles */}
           <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
           <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
