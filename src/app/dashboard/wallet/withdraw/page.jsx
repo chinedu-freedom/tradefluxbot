@@ -52,7 +52,7 @@ function WithdrawContent() {
   const settings = settingsRes?.settings || {};
   
   const { data: cryptosRes, isLoading: isLoadingCryptos } = useFetchData("/settings/payout-cryptos", ["payout-cryptos"]);
-  const cryptos = cryptosRes?.data || [];
+  const cryptos = (cryptosRes?.data && cryptosRes.data.length > 0) ? cryptosRes.data : FIXED_CRYPTOS;
 
   const { data: walletsRes, isLoading: isLoadingWallets } = useFetchData("/wallets", ["user-wallets"]);
   const wallets = walletsRes?.wallets || [];
@@ -512,6 +512,13 @@ function WithdrawContent() {
     </div>
   );
 }
+
+const FIXED_CRYPTOS = [
+  { id: "usdt-trc20", name: "Tether (TRC20)", symbol: "USDT", network: "TRC20", network_name: "Tron Network (TRC20)", icon: "https://assets.coingecko.com/coins/images/325/large/Tether.png" },
+  { id: "usdt-bep20", name: "Tether (BEP20)", symbol: "USDT", network: "BEP20", network_name: "BNB Smart Chain (BEP20)", icon: "https://assets.coingecko.com/coins/images/325/large/Tether.png" },
+  { id: "btc", name: "Bitcoin", symbol: "BTC", network: "Bitcoin", network_name: "Bitcoin Network", icon: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png" },
+  { id: "ltc", name: "Litecoin", symbol: "LTC", network: "Litecoin", network_name: "Litecoin Network", icon: "https://assets.coingecko.com/coins/images/2/large/litecoin.png" }
+];
 
 export default function WithdrawPage() {
   return (

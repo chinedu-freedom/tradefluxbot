@@ -29,6 +29,13 @@ const parseNoticeToLines = (htmlString) => {
     .filter(Boolean);
 };
 
+const FIXED_CRYPTOS = [
+  { id: "usdt-trc20", name: "Tether (TRC20)", symbol: "USDT", network: "TRC20", network_name: "Tron Network (TRC20)", icon: "https://assets.coingecko.com/coins/images/325/large/Tether.png" },
+  { id: "usdt-bep20", name: "Tether (BEP20)", symbol: "USDT", network: "BEP20", network_name: "BNB Smart Chain (BEP20)", icon: "https://assets.coingecko.com/coins/images/325/large/Tether.png" },
+  { id: "btc", name: "Bitcoin", symbol: "BTC", network: "Bitcoin", network_name: "Bitcoin Network", icon: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png" },
+  { id: "ltc", name: "Litecoin", symbol: "LTC", network: "Litecoin", network_name: "Litecoin Network", icon: "https://assets.coingecko.com/coins/images/2/large/litecoin.png" }
+];
+
 function DepositContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -44,12 +51,12 @@ function DepositContent() {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const { data: cryptosRes, isLoading: isLoadingCryptos } = useFetchData("/settings/payout-cryptos", ["payout-cryptos"]);
-  const cryptos = cryptosRes?.data || [];
+  const cryptos = (cryptosRes?.data && cryptosRes.data.length > 0) ? cryptosRes.data : FIXED_CRYPTOS;
   
   const { data: settingsRes, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsRes?.settings || {};
 
-  const selectedCrypto = cryptos.find(c => c.id === cryptoId);
+  const selectedCrypto = cryptos.find(c => c.id === cryptoId || c.symbol === cryptoId) || cryptos[0];
 
   // Auto-select the first cryptocurrency if none is selected
   useEffect(() => {
