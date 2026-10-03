@@ -51,14 +51,14 @@ const initialMarketPrices = {
   "SNX/USDT": { amount: 0.22, change: 2.45 },
   "SOL/USDT": { amount: 76.23, change: 2.05 },
   "YFI/USDT": { amount: 2121.00, change: 1.87 },
-  
+
   // Gainers
   "DOGE/USDT": { amount: 0.084, change: 24.81 },
   "AVAX/USDT": { amount: 28.45, change: 15.30 },
   "ADA/USDT": { amount: 0.44, change: 12.15 },
   "XRP/USDT": { amount: 0.61, change: 9.88 },
   "MATIC/USDT": { amount: 0.82, change: 7.45 },
-  
+
   // Losers
   "LUNA/USDT": { amount: 0.55, change: -18.93 },
   "FTM/USDT": { amount: 0.38, change: -12.45 },
@@ -67,7 +67,7 @@ const initialMarketPrices = {
   "NEAR/USDT": { amount: 2.15, change: -6.15 },
   "SAND/USDT": { amount: 0.41, change: -5.80 },
   "MANA/USDT": { amount: 0.39, change: -4.95 },
-  
+
   // Turnover
   "BTC/USDT": { amount: 42150.00, change: 1.20 },
   "BNB/USDT": { amount: 305.40, change: 0.95 }
@@ -94,7 +94,7 @@ export default function DashboardPage() {
   const { data: settingsResponse } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
   const referralDomain = typeof window !== "undefined" ? window.location.origin : "https://tradefluxbot.com";
 
   const [liveMarketData, setLiveMarketData] = useState([]);
@@ -133,16 +133,16 @@ export default function DashboardPage() {
   useEffect(() => {
     if (marketData && marketData.length > 0) {
       setLiveMarketData(marketData);
-      
+
       const fetchLivePrices = async () => {
         try {
           const promises = marketData.map(async (asset) => {
             if (!asset.symbol) return null;
-            
+
             try {
               const data = await fetchData(`/live-market/proxy?symbol=${asset.symbol.toUpperCase()}`);
               if (!data || data.error || !data.lastPrice) return null;
-              
+
               return {
                 symbol: asset.symbol,
                 current_price: parseFloat(data.lastPrice),
@@ -152,10 +152,10 @@ export default function DashboardPage() {
               return null;
             }
           });
-          
+
           const results = await Promise.all(promises);
           const validResults = results.filter(Boolean);
-          
+
           if (validResults.length > 0) {
             setLiveMarketData(prev => {
               return prev.map(asset => {
@@ -175,7 +175,7 @@ export default function DashboardPage() {
           console.error("Error fetching live prices:", error);
         }
       };
-      
+
       fetchLivePrices();
       const interval = setInterval(fetchLivePrices, 15000);
       return () => clearInterval(interval);
@@ -209,7 +209,7 @@ export default function DashboardPage() {
   // Flash green/red on price fluctuations
   useEffect(() => {
     const flashTimeout = {};
-    
+
     // Check liveMarketData
     liveMarketData.forEach(asset => {
       const symbol = asset.symbol;
@@ -227,7 +227,7 @@ export default function DashboardPage() {
         setPrevPrices(prevMap => ({ ...prevMap, [symbol]: current }));
       }
     });
-    
+
     // Check fallback marketPrices
     Object.keys(marketPrices).forEach(pair => {
       const symbol = pair.split("/")[0];
@@ -264,10 +264,10 @@ export default function DashboardPage() {
   const getDisplayBalance = () => {
     const baseSymbol = settings.currency_symbol || "$";
     if (!userProfile) return `${baseSymbol}0.00`;
-    
+
     const balanceUSD = parseFloat(userProfile.balance || 0) + parseFloat(userProfile.withdrawable_balance || 0);
     const baseCurrency = settings.currency_name || "USDT";
-    
+
     if (currency === "USDT" || currency === baseCurrency) {
       return `${baseSymbol}${balanceUSD.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     } else {
@@ -282,7 +282,7 @@ export default function DashboardPage() {
     const numericVal = parseFloat(val || 0);
     const baseSymbol = settings.currency_symbol || "$";
     const baseCurrency = settings.currency_name || "USDT";
-    
+
     if (currency === "USDT" || currency === baseCurrency) {
       return `${baseSymbol}${numericVal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${baseCurrency}`;
     } else {
@@ -331,10 +331,10 @@ export default function DashboardPage() {
     const typeLower = (tx.type || "").toLowerCase();
     const descLower = (tx.description || "").toLowerCase();
     if (
-      typeLower.includes('debit') || 
-      typeLower.includes('cost') || 
-      typeLower.includes('withdraw') || 
-      typeLower.includes('invest') || 
+      typeLower.includes('debit') ||
+      typeLower.includes('cost') ||
+      typeLower.includes('withdraw') ||
+      typeLower.includes('invest') ||
       typeLower.includes('plan')
     ) {
       return false;
@@ -351,9 +351,9 @@ export default function DashboardPage() {
       return rawTransactions.filter(tx => (tx.type || "").toLowerCase().includes("withdraw"));
     }
     if (txFilter === "Bonus") {
-      return rawTransactions.filter(tx => 
-        (tx.type || "").toLowerCase().includes("bonus") || 
-        (tx.type || "").toLowerCase().includes("reward") || 
+      return rawTransactions.filter(tx =>
+        (tx.type || "").toLowerCase().includes("bonus") ||
+        (tx.type || "").toLowerCase().includes("reward") ||
         (tx.type || "").toLowerCase().includes("checkin")
       );
     }
@@ -369,27 +369,27 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col h-full bg-transparent overflow-y-auto [&::-webkit-scrollbar]:hidden relative">
       <div className="px-4 pt-4 pb-4 space-y-3">
-        
+
         {/* Balance Card (Portfolio Overview) */}
         <div className="bg-gradient-to-br from-[#00629b]/20 via-[#111827]/90 to-[#0b0f19] rounded-[24px] p-6 text-white shadow-xl relative overflow-hidden border border-amber-500/20 flex flex-col items-center text-center">
           {/* Background decoration */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#0073b6]/5 rounded-full blur-3xl -z-10"></div>
-          
+
           <div className="flex items-center justify-center gap-1.5 mb-1.5 relative z-10 w-full">
             <span className="text-gray-400 text-[11px] font-bold tracking-wider uppercase">Portfolio Overview</span>
-            <button 
+            <button
               onClick={() => setShowBalance(!showBalance)}
               className="text-white/40 hover:text-white transition-colors cursor-pointer"
             >
               {showBalance ? <Eye size={13} /> : <EyeOff size={13} />}
             </button>
           </div>
-          
+
           <div className="flex items-center justify-center gap-1.5 mb-5 relative z-10">
             <h2 className="text-[26px] font-bold text-white tracking-tight leading-none">
               {showBalance ? currentBalanceTotal : "****"}
             </h2>
-            <button 
+            <button
               onClick={toggleCurrency}
               className="bg-white/5 hover:bg-white/10 text-[9px] font-bold px-1.5 py-0.5 rounded border border-white/10 transition-colors"
             >
@@ -398,8 +398,8 @@ export default function DashboardPage() {
           </div>
 
           <div className="relative z-10 w-full flex justify-center">
-            <Link 
-              href="/dashboard/wallet/deposit" 
+            <Link
+              href="/dashboard/wallet/deposit"
               className="bg-[#0073b6] hover:bg-[#00629b] text-[#111827] text-[12px] font-bold px-8 py-2 rounded-lg transition-all shadow-md active:scale-[0.98]"
             >
               Top up
@@ -411,7 +411,7 @@ export default function DashboardPage() {
         <div className="bg-gradient-to-br from-[#00629b]/20 via-[#111827]/90 to-[#0b0f19] rounded-[24px] p-5 text-white shadow-xl relative overflow-hidden border border-amber-500/20 flex flex-col gap-4">
           {/* Background decoration */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#0073b6]/5 rounded-full blur-3xl -z-10"></div>
-          
+
           <div className="flex items-center justify-center gap-1.5 relative z-10 w-full mb-1">
             <span className="text-gray-400 text-[11px] font-bold tracking-wider uppercase">Account Statistics</span>
           </div>
@@ -466,30 +466,30 @@ export default function DashboardPage() {
               { label: "Daily Check-in", emoji: "📅", action: () => window.dispatchEvent(new Event('open-daily-checkin')) },
               { label: "Transaction Log", emoji: "📋", action: () => router.push('/dashboard/transactions') },
               { label: "Bonus Code", emoji: "🎁", action: () => router.push('/dashboard/treasure') },
-              { 
-                label: "Download App", 
-                emoji: "⬇️", 
+              {
+                label: "Download App",
+                emoji: "⬇️",
                 action: () => {
                   if (isInstallable) {
                     installPWA();
                   } else {
                     window.dispatchEvent(new Event('open-install-guide'));
                   }
-                } 
+                }
               },
               { label: "Referrals", emoji: "👥", action: () => router.push('/dashboard/invite') },
               { label: "Settings", emoji: "⚙️", action: () => router.push('/dashboard/settings') },
-              { 
-                label: "WhatsApp Group", 
-                emoji: "💬", 
+              {
+                label: "WhatsApp Group",
+                emoji: "💬",
                 action: () => {
                   window.dispatchEvent(new Event('open-whatsapp-modal'));
-                } 
+                }
               },
             ].map((item, idx) => (
-              <div 
-                key={idx} 
-                onClick={item.action} 
+              <div
+                key={idx}
+                onClick={item.action}
                 className="flex flex-col items-center gap-1.5 cursor-pointer group"
               >
                 <div className="text-[24px] select-none group-hover:scale-115 transition-transform duration-200 py-1">
@@ -510,7 +510,7 @@ export default function DashboardPage() {
         {isMarketVisible && (
           <div className="mt-5">
             <h3 className="font-semibold text-white/95 text-[15px] mb-3 px-1">Live Performance</h3>
-            
+
             {/* Tabs */}
             <div className="flex gap-2 mb-3 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
               {["Hot", "Gainers", "Losers", "Turnover"].map((tab) => {
@@ -519,11 +519,10 @@ export default function DashboardPage() {
                   <button
                     key={tab}
                     onClick={() => setActiveMarketTab(tab)}
-                    className={`px-4 py-1.5 rounded-[8px] text-[12px] font-semibold border transition-all cursor-pointer whitespace-nowrap ${
-                      isActive 
-                        ? "border-[#0073b6] text-[#0073b6] bg-amber-500/5 shadow-sm shadow-amber-500/5" 
+                    className={`px-4 py-1.5 rounded-[8px] text-[12px] font-semibold border transition-all cursor-pointer whitespace-nowrap ${isActive
+                        ? "border-[#0073b6] text-[#0073b6] bg-amber-500/5 shadow-sm shadow-amber-500/5"
                         : "border-white/5 text-gray-400 bg-white/5 hover:bg-white/10"
-                    }`}
+                      }`}
                   >
                     {tab}
                   </button>
@@ -573,12 +572,12 @@ export default function DashboardPage() {
                     <div key={`${asset.id || index}-${symbol}`} className="grid grid-cols-3 items-center py-2.5 text-[13px]">
                       {/* Pair name */}
                       <div className="font-semibold text-white/95">{displaySymbol}</div>
-                      
+
                       {/* Amount / Price */}
                       <div className={`text-center font-medium transition-all duration-300 ${flashClass}`}>
                         {formattedAmount}
                       </div>
-                      
+
                       {/* Percentage Change */}
                       <div className={`text-right font-semibold flex items-center justify-end gap-1 ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
                         <span>{isPositive ? '↑' : '↓'}</span>
@@ -635,17 +634,17 @@ export default function DashboardPage() {
             <p className="text-gray-400 text-[12px] mb-4 leading-relaxed">
               {siteName} offers a 4-level referral system. Invite friends and earn free spins to spin the wheel and win big!
             </p>
-            
+
             <div className="space-y-1.5">
               <label className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">Your referral link</label>
               <div className="flex gap-2">
-                <input 
-                  type="text" 
-                  readOnly 
+                <input
+                  type="text"
+                  readOnly
                   value={userProfile?.referral_code ? `${referralDomain}/auth/register?ref=${userProfile.referral_code}` : "Loading..."}
                   className="flex-1 bg-white/5 border border-white/5 rounded-lg px-3 py-2 text-[12px] text-white/90 outline-none focus:border-amber-500/50"
                 />
-                <button 
+                <button
                   onClick={() => {
                     if (userProfile?.referral_code) {
                       navigator.clipboard.writeText(`${referralDomain}/auth/register?ref=${userProfile.referral_code}`);
@@ -665,147 +664,146 @@ export default function DashboardPage() {
         <div className="mt-5">
           <h3 className="font-semibold text-white/95 text-[15px] mb-3 px-1">Recent Transaction</h3>
           <div className="bg-[#111827] rounded-[18px] p-5 shadow-sm border border-amber-500/10">
-          
-          {/* Filters */}
-          <div className="flex gap-1.5 mb-4 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden px-1">
-            {["All", "Deposit", "Withdrawal", "Bonus"].map((filter) => {
-              const isActive = txFilter === filter;
-              return (
-                <button
-                  key={filter}
-                  onClick={() => {
-                    setTxFilter(filter);
-                    setTxPage(1);
-                  }}
-                  className={`px-3 py-1 rounded-[6px] text-[11px] font-bold border transition-all cursor-pointer whitespace-nowrap ${
-                    isActive 
-                      ? "border-[#0073b6] text-[#0073b6] bg-amber-500/5" 
-                      : "border-white/5 text-gray-400 bg-white/5 hover:bg-white/10"
-                  }`}
-                >
-                  {filter}
-                </button>
-              );
-            })}
-          </div>
 
-          {/* Table */}
-          <div className="overflow-x-auto [&::-webkit-scrollbar]:hidden">
-            <table className="w-full text-left border-collapse min-w-[420px]">
-              <thead>
-                <tr className="border-b border-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
-                  <th className="pb-2.5">Type</th>
-                  <th className="pb-2.5 text-center">Amount</th>
-                  <th className="pb-2.5 text-center">Date</th>
-                  <th className="pb-2.5 text-right">Status</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 text-[12px]">
-                {isLoadingTx ? (
-                  <tr>
-                    <td colSpan="4" className="py-6 text-center text-gray-500">
-                      <Loader2 className="w-4 h-4 animate-spin text-amber-500 mx-auto" />
-                    </td>
-                  </tr>
-                ) : getPaginatedTx().length === 0 ? (
-                  <tr>
-                    <td colSpan="4" className="py-8 text-center">
-                      <div className="flex flex-col items-center justify-center text-center">
-                        <svg className="w-12 h-12 text-white/10 mb-3 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-                          <polyline points="14 2 14 8 20 8" />
-                          <line x1="16" y1="13" x2="8" y2="13" />
-                          <line x1="16" y1="17" x2="8" y2="17" />
-                          <line x1="10" y1="9" x2="8" y2="9" />
-                        </svg>
-                        <p className="text-[12px] text-gray-500 max-w-[240px] leading-relaxed mx-auto">
-                          No transactions found yet. Your logs will appear here once you perform actions on the platform.
-                        </p>
-                      </div>
-                    </td>
-                  </tr>
-                ) : (
-                  getPaginatedTx().map((tx) => {
-                    const isCredit = isTxCredit(tx);
-                    const sign = isCredit ? "+" : "-";
-                    const amountColor = isCredit ? "text-green-500" : "text-red-500";
-                    const amountStr = `${sign}${settings.currency_symbol || '$'}${parseFloat(tx.amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-                    const dateObj = new Date(tx.created_at || Date.now());
-                    const formattedDate = `${dateObj.getDate()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getFullYear()).slice(-2)}`;
-                    const formattedTime = dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-                    
-                    const statusStr = (tx.status || "pending").toLowerCase();
-                    const statusDisplayStr = (statusStr === "approved" || statusStr === "completed" || statusStr === "success") ? "success" : statusStr;
-                    const statusBadgeClass = statusStr === "completed" || statusStr === "success" || statusStr === "approved"
-                      ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                      : statusStr === "failed" || statusStr === "declined"
-                        ? "bg-red-500/10 text-red-400 border border-red-500/20"
-                        : "bg-amber-500/10 text-amber-400 border border-amber-500/20";
-
-                    const rawType = (tx.type || "").toUpperCase();
-                    const rawDesc = (tx.description || "").toUpperCase();
-                    const rawStatus = (tx.status || "").toUpperCase();
-                    
-                    let displayType = rawType.replace(/_/g, ' ');
-                    if (rawType.includes("CREDIT") || rawDesc.includes("CREDIT") || rawDesc.includes("MANUAL CREDIT") || rawDesc.includes("DEPOSIT SUCCESSFUL")) {
-                      displayType = "DEPOSIT SUCCESSFUL";
-                    } else if (rawType.includes("INVEST") || rawType.includes("PLAN") || rawDesc.includes("INVEST")) {
-                      displayType = "MINING POOL ACTIVATED";
-                    } else if (rawType === "DEPOSIT") {
-                      if (rawStatus === "APPROVED" || rawStatus === "COMPLETED" || rawStatus === "SUCCESS") {
-                        displayType = "DEPOSIT CREDITED";
-                      } else {
-                        displayType = "DEPOSIT INITIATED";
-                      }
-                    } else if (rawType.includes("PROFIT") || rawDesc.includes("PROFIT")) {
-                      displayType = "DAILY PROFITS";
-                    } else {
-                      displayType = displayType.toUpperCase();
-                    }
-
-                    return (
-                      <tr key={tx.id}>
-                        <td className="py-3 font-semibold text-white/90">{displayType}</td>
-                        <td className={`py-3 text-center font-bold ${amountColor}`}>{amountStr}</td>
-                        <td className="py-3 text-center text-gray-400">
-                          <div>{formattedDate}</div>
-                          <div className="text-[10px] text-gray-500 mt-0.5">{formattedTime}</div>
-                        </td>
-                        <td className="py-3 text-right">
-                          <span className={`px-2 py-0.5 rounded-[6px] text-[10px] font-bold ${statusBadgeClass}`}>
-                            {statusDisplayStr}
-                          </span>
-                        </td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Pagination */}
-          {!isLoadingTx && filteredTxList.length > 5 && (
-            <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/5 px-1 text-[12px]">
-              <button
-                onClick={() => setTxPage(prev => Math.max(1, prev - 1))}
-                disabled={txPage === 1}
-                className="w-8 h-8 rounded-lg border border-white/5 bg-white/5 flex items-center justify-center text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors cursor-pointer"
-              >
-                ‹
-              </button>
-              <span className="text-gray-400">
-                Page {txPage} of {totalTxPages}
-              </span>
-              <button
-                onClick={() => setTxPage(prev => Math.min(totalTxPages, prev + 1))}
-                disabled={txPage === totalTxPages}
-                className="w-8 h-8 rounded-lg border border-white/5 bg-white/5 flex items-center justify-center text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors cursor-pointer"
-              >
-                ›
-              </button>
+            {/* Filters */}
+            <div className="flex gap-1.5 mb-4 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden px-1">
+              {["All", "Deposit", "Withdrawal", "Bonus"].map((filter) => {
+                const isActive = txFilter === filter;
+                return (
+                  <button
+                    key={filter}
+                    onClick={() => {
+                      setTxFilter(filter);
+                      setTxPage(1);
+                    }}
+                    className={`px-3 py-1 rounded-[6px] text-[11px] font-bold border transition-all cursor-pointer whitespace-nowrap ${isActive
+                        ? "border-[#0073b6] text-[#0073b6] bg-amber-500/5"
+                        : "border-white/5 text-gray-400 bg-white/5 hover:bg-white/10"
+                      }`}
+                  >
+                    {filter}
+                  </button>
+                );
+              })}
             </div>
-          )}
+
+            {/* Table */}
+            <div className="overflow-x-auto [&::-webkit-scrollbar]:hidden">
+              <table className="w-full text-left border-collapse min-w-[420px]">
+                <thead>
+                  <tr className="border-b border-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-wider">
+                    <th className="pb-2.5">Type</th>
+                    <th className="pb-2.5 text-center">Amount</th>
+                    <th className="pb-2.5 text-center">Date</th>
+                    <th className="pb-2.5 text-right">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5 text-[12px]">
+                  {isLoadingTx ? (
+                    <tr>
+                      <td colSpan="4" className="py-6 text-center text-gray-500">
+                        <Loader2 className="w-4 h-4 animate-spin text-amber-500 mx-auto" />
+                      </td>
+                    </tr>
+                  ) : getPaginatedTx().length === 0 ? (
+                    <tr>
+                      <td colSpan="4" className="py-8 text-center">
+                        <div className="flex flex-col items-center justify-center text-center">
+                          <svg className="w-12 h-12 text-white/10 mb-3 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <line x1="10" y1="9" x2="8" y2="9" />
+                          </svg>
+                          <p className="text-[12px] text-gray-500 max-w-[240px] leading-relaxed mx-auto">
+                            No transactions found yet. Your logs will appear here once you perform actions on the platform.
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    getPaginatedTx().map((tx) => {
+                      const isCredit = isTxCredit(tx);
+                      const sign = isCredit ? "+" : "-";
+                      const amountColor = isCredit ? "text-green-500" : "text-red-500";
+                      const amountStr = `${sign}${settings.currency_symbol || '$'}${parseFloat(tx.amount || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                      const dateObj = new Date(tx.created_at || Date.now());
+                      const formattedDate = `${dateObj.getDate()}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${String(dateObj.getFullYear()).slice(-2)}`;
+                      const formattedTime = dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+                      const statusStr = (tx.status || "pending").toLowerCase();
+                      const statusDisplayStr = (statusStr === "approved" || statusStr === "completed" || statusStr === "success") ? "success" : statusStr;
+                      const statusBadgeClass = statusStr === "completed" || statusStr === "success" || statusStr === "approved"
+                        ? "bg-green-500/10 text-green-400 border border-green-500/20"
+                        : statusStr === "failed" || statusStr === "declined"
+                          ? "bg-red-500/10 text-red-400 border border-red-500/20"
+                          : "bg-amber-500/10 text-amber-400 border border-amber-500/20";
+
+                      const rawType = (tx.type || "").toUpperCase();
+                      const rawDesc = (tx.description || "").toUpperCase();
+                      const rawStatus = (tx.status || "").toUpperCase();
+
+                      let displayType = rawType.replace(/_/g, ' ');
+                      if (rawType.includes("CREDIT") || rawDesc.includes("CREDIT") || rawDesc.includes("MANUAL CREDIT") || rawDesc.includes("DEPOSIT SUCCESSFUL")) {
+                        displayType = "DEPOSIT SUCCESSFUL";
+                      } else if (rawType.includes("INVEST") || rawType.includes("PLAN") || rawDesc.includes("INVEST")) {
+                        displayType = "MINING POOL ACTIVATED";
+                      } else if (rawType === "DEPOSIT") {
+                        if (rawStatus === "APPROVED" || rawStatus === "COMPLETED" || rawStatus === "SUCCESS") {
+                          displayType = "DEPOSIT CREDITED";
+                        } else {
+                          displayType = "DEPOSIT INITIATED";
+                        }
+                      } else if (rawType.includes("PROFIT") || rawDesc.includes("PROFIT")) {
+                        displayType = "DAILY PROFITS";
+                      } else {
+                        displayType = displayType.toUpperCase();
+                      }
+
+                      return (
+                        <tr key={tx.id}>
+                          <td className="py-3 font-semibold text-white/90">{displayType}</td>
+                          <td className={`py-3 text-center font-bold ${amountColor}`}>{amountStr}</td>
+                          <td className="py-3 text-center text-gray-400">
+                            <div>{formattedDate}</div>
+                            <div className="text-[10px] text-gray-500 mt-0.5">{formattedTime}</div>
+                          </td>
+                          <td className="py-3 text-right">
+                            <span className={`px-2 py-0.5 rounded-[6px] text-[10px] font-bold ${statusBadgeClass}`}>
+                              {statusDisplayStr}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Pagination */}
+            {!isLoadingTx && filteredTxList.length > 5 && (
+              <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/5 px-1 text-[12px]">
+                <button
+                  onClick={() => setTxPage(prev => Math.max(1, prev - 1))}
+                  disabled={txPage === 1}
+                  className="w-8 h-8 rounded-lg border border-white/5 bg-white/5 flex items-center justify-center text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors cursor-pointer"
+                >
+                  ‹
+                </button>
+                <span className="text-gray-400">
+                  Page {txPage} of {totalTxPages}
+                </span>
+                <button
+                  onClick={() => setTxPage(prev => Math.min(totalTxPages, prev + 1))}
+                  disabled={txPage === totalTxPages}
+                  className="w-8 h-8 rounded-lg border border-white/5 bg-white/5 flex items-center justify-center text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors cursor-pointer"
+                >
+                  ›
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -813,11 +811,11 @@ export default function DashboardPage() {
 
       {/* Events Modal */}
       {showEventsModal && (
-        <div 
+        <div
           onClick={() => setShowEventsModal(false)}
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
         >
-          <div 
+          <div
             onClick={(e) => e.stopPropagation()}
             className="bg-[#111827] border border-white/10 rounded-[20px] w-full max-w-[340px] p-5 shadow-xl animate-in fade-in zoom-in-95 duration-200"
           >

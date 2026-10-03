@@ -37,7 +37,7 @@ export default function LoginPage() {
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
 
   useEffect(() => {
     setIsMounted(true);
@@ -50,7 +50,7 @@ export default function LoginPage() {
 
   const loginMutation = usePost("/auth/login", null);
 
-  if (!isMounted || isLoadingSettings) {
+  if (!isMounted) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
         <div className="w-12 h-12 border-4 border-gray-100 border-t-[#0073b6] rounded-full animate-spin"></div>
@@ -91,10 +91,10 @@ export default function LoginPage() {
           <div className="mb-10 flex flex-col items-center text-center">
             {siteLogo && !imgError ? (
               <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm flex items-center justify-center bg-gray-50 border border-gray-100 mb-4">
-                <img 
-                  src={siteLogo} 
-                  alt="Logo" 
-                  className="w-full h-full object-contain" 
+                <img
+                  src={siteLogo}
+                  alt="Logo"
+                  className="w-full h-full object-contain"
                   onError={() => setImgError(true)}
                 />
               </div>
@@ -153,7 +153,7 @@ export default function LoginPage() {
                       id="keepMeLoggedIn"
                     />
                     <span className="text-sm text-gray-600">
-                     Remember me
+                      Remember me
                     </span>
                   </label>
                 )}
@@ -179,7 +179,7 @@ export default function LoginPage() {
           <p className="text-center text-sm text-gray-500 mt-6">
             Don’t have an account?{" "}
             <Link href="/auth/register" className="text-amber-600 font-medium cursor-pointer">
-             Register
+              Register
             </Link>
           </p>
         </div>

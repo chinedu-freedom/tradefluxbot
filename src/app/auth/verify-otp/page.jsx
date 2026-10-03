@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { otpSchema } from "@/lib/schemas";
-import { usePost, useFetchData } from "@/hooks/useApi"; 
+import { usePost, useFetchData } from "@/hooks/useApi";
 import { Input } from "@/components/ui/auth-input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -26,7 +26,7 @@ export default function VerifyOtpPage() {
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
 
   useEffect(() => {
     setIsMounted(true);
@@ -94,10 +94,10 @@ export default function VerifyOtpPage() {
         <div className="w-full max-w-sm text-center flex flex-col items-center">
           {siteLogo && !imgError ? (
             <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm flex items-center justify-center bg-gray-50 border border-gray-100 mb-4">
-              <img 
-                src={siteLogo} 
-                alt="Logo" 
-                className="w-full h-full object-contain" 
+              <img
+                src={siteLogo}
+                alt="Logo"
+                className="w-full h-full object-contain"
                 onError={() => setImgError(true)}
               />
             </div>
@@ -144,12 +144,11 @@ export default function VerifyOtpPage() {
                 type="button"
                 onClick={handleResend}
                 disabled={resendOtpMutation.isPending}
-                className={`font-medium cursor-pointer hover:underline ${
-                  resendOtpMutation.isPending
+                className={`font-medium cursor-pointer hover:underline ${resendOtpMutation.isPending
                     ? "text-gray-400 cursor-not-allowed"
                     : "text-amber-600"
-                }`}
-               className="cursor-pointer">
+                  }`}
+                className="cursor-pointer">
                 {resendOtpMutation.isPending ? "Resending..." : "Resend"}
               </button>
             </p>
@@ -158,7 +157,7 @@ export default function VerifyOtpPage() {
       </div>
 
       {/* Right side (Image) */}
-       
+
     </div>
   );
 }

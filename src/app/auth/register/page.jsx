@@ -45,7 +45,7 @@ function SignupForm() {
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
 
   const { data: countriesRes, isLoading: isLoadingCountries } = useFetchData("/auth/countries", ["countries"]);
   const countries = Array.isArray(countriesRes) ? countriesRes : countriesRes?.data || [];
@@ -81,7 +81,7 @@ function SignupForm() {
         if (res?.token) {
           setAuthToken(res.token);
         }
-        router.push("/dashboard"); 
+        router.push("/dashboard");
       },
     });
   };
@@ -94,10 +94,10 @@ function SignupForm() {
           <div className="mb-10 flex flex-col items-center text-center">
             {siteLogo && !imgError ? (
               <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm flex items-center justify-center bg-gray-50 border border-gray-100 mb-4">
-                <img 
-                  src={siteLogo} 
-                  alt="Logo" 
-                  className="w-full h-full object-contain" 
+                <img
+                  src={siteLogo}
+                  alt="Logo"
+                  className="w-full h-full object-contain"
                   onError={() => setImgError(true)}
                 />
               </div>
@@ -228,9 +228,9 @@ function SignupForm() {
                 name="referred_by_code"
                 defaultValue={refCode || ""}
                 render={({ field }) => (
-                  <Input 
-                    label="Invitation Code (Optional)" 
-                    {...field} 
+                  <Input
+                    label="Invitation Code (Optional)"
+                    {...field}
                   />
                 )}
               />

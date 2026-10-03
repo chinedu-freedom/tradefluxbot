@@ -10,11 +10,19 @@ const axiosInstance = axios.create({
   withCredentials: false,
 });
 
-// Attach token if available
-if (typeof window !== "undefined") {
-  const token = CookieManager.get("sec-prd-token");
-  if (token) axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
-}
+// Dynamic request interceptor to always attach current token
+axiosInstance.interceptors.request.use(
+  (config) => {
+    if (typeof window !== "undefined") {
+      const token = CookieManager.get("sec-prd-token");
+      if (token) {
+        config.headers.Authorization = "Bearer " + token;
+      }
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 // Global response interceptor
 axiosInstance.interceptors.response.use(
@@ -35,14 +43,13 @@ axiosInstance.interceptors.response.use(
 
 // Helper functions
 export const setAuthToken = (token, keepMeLoggedIn = false) => {
-  const expires = keepMeLoggedIn ? 1 : 1 / 24; // 24 hours (1 day) or 1 hour
+  const expires = keepMeLoggedIn ? 30 : 1; // 30 days or 1 day
   CookieManager.set("sec-prd-token", token, {
     expires,
     path: "/",
-    secure: true,
-    sameSite: "Strict",
+    sameSite: "Lax",
   });
-  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  axiosInstance.defaults.headers.common.Authorization = "Bearer " + token;
 };
 
 export const clearAuthToken = () => {

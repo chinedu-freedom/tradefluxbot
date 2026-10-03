@@ -21,7 +21,7 @@ export default function ResetPasswordPage() {
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
 
   useEffect(() => {
     setIsMounted(true);
@@ -98,10 +98,10 @@ export default function ResetPasswordPage() {
           <div className="mb-10 flex flex-col items-center text-center">
             {siteLogo && !imgError ? (
               <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm flex items-center justify-center bg-gray-50 border border-gray-100 mb-4">
-                <img 
-                  src={siteLogo} 
-                  alt="Logo" 
-                  className="w-full h-full object-contain" 
+                <img
+                  src={siteLogo}
+                  alt="Logo"
+                  className="w-full h-full object-contain"
                   onError={() => setImgError(true)}
                 />
               </div>

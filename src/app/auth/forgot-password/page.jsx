@@ -28,7 +28,7 @@ export default function ForgotPasswordPage() {
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
 
   useEffect(() => {
     setIsMounted(true);
@@ -63,10 +63,10 @@ export default function ForgotPasswordPage() {
           <div className="mb-10 flex flex-col items-center text-center">
             {siteLogo && !imgError ? (
               <div className="w-16 h-16 rounded-full overflow-hidden shadow-sm flex items-center justify-center bg-gray-50 border border-gray-100 mb-4">
-                <img 
-                  src={siteLogo} 
-                  alt="Logo" 
-                  className="w-full h-full object-contain" 
+                <img
+                  src={siteLogo}
+                  alt="Logo"
+                  className="w-full h-full object-contain"
                   onError={() => setImgError(true)}
                 />
               </div>
@@ -106,7 +106,7 @@ export default function ForgotPasswordPage() {
             <p className="text-center text-sm text-gray-500 mt-6">
               Remembered your password?{" "}
               <Link href="/" className="text-amber-600 font-medium hover:underline cursor-pointer">
-              Back to Login
+                Back to Login
               </Link>
             </p>
           </form>

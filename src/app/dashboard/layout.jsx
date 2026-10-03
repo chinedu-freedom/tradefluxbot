@@ -10,7 +10,7 @@ import { Globe, X, Home, Wallet, CreditCard, Cpu, TrendingUp, Clock, MessageCirc
 import Link from "next/link";
 import { usePWA } from "@/components/PWAProvider";
 import { toast } from "sonner";
-import axiosInstance, { clearAuthToken } from "@/config/axiosInstance";
+import axiosInstance, { clearAuthToken, getAuthToken } from "@/config/axiosInstance";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -24,14 +24,35 @@ export default function DashboardLayout({ children }) {
   const [currentLang, setCurrentLang] = useState("EN");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [tokenChecked, setTokenChecked] = useState(false);
+
+  useEffect(() => {
+    const token = getAuthToken();
+    if (!token) {
+      router.push("/");
+    } else {
+      setTokenChecked(true);
+    }
+  }, [router]);
+
   const { isLoading: isLoadingSettings, data: settingsResponse } = useFetchData("/settings", ["platform-settings"]);
-  const { data: userRes, isLoading: isLoadingProfile } = useFetchData("/users/me", ["user-profile"]);
+  const { data: userRes, isLoading: isLoadingProfile, isError: isErrorProfile } = useFetchData("/users/me", ["user-profile"], {
+    enabled: tokenChecked,
+    retry: 1
+  });
   const { data: languagesResponse } = useFetchData("/auth/languages", ["languages"]);
+
+  useEffect(() => {
+    if (isErrorProfile) {
+      clearAuthToken();
+      router.push("/");
+    }
+  }, [isErrorProfile, router]);
 
   const user = userRes?.user;
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
   const dynamicLanguages = languagesResponse?.data || [];
 
   const isProtectedRoute = useMemo(() => {
@@ -49,10 +70,10 @@ export default function DashboardLayout({ children }) {
     }
   }, [user?.language]);
 
-  if (isLoadingSettings || isLoadingProfile) {
+  if (!tokenChecked || isLoadingSettings || (isLoadingProfile && !userRes)) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-[#0073b6] rounded-full animate-spin"></div>
+      <div className="fixed inset-0 flex items-center justify-center bg-[#0b0f19] z-[9999]">
+        <div className="w-12 h-12 border-4 border-white/10 border-t-[#0073b6] rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -60,15 +81,15 @@ export default function DashboardLayout({ children }) {
   return (
     <div className="h-screen bg-[#0b0f19] flex justify-center overflow-hidden">
       <div className="w-full max-w-[480px] bg-[#0b0f19] h-screen relative shadow-2xl overflow-hidden pb-[80px] flex flex-col">
-        
+
         {/* Sidebar Drawer Backdrop */}
         {isSidebarOpen && (
-          <div 
+          <div
             className="absolute inset-0 bg-black/60 z-[100] transition-opacity duration-300"
             onClick={() => setIsSidebarOpen(false)}
           />
         )}
-        
+
         {/* Sidebar Drawer Panel */}
         <div className={`absolute top-0 left-0 w-[280px] h-full bg-[#111827] z-[101] shadow-2xl transition-transform duration-300 flex flex-col ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className="p-4 border-b border-white/5 flex items-center justify-between">
@@ -149,7 +170,7 @@ export default function DashboardLayout({ children }) {
                 </div>
                 <ChevronDown size={14} className={`text-gray-400 transition-transform ${isSettingsOpen ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {isSettingsOpen && (
                 <div className="pl-9 bg-black/10 border-l border-amber-500/20 flex flex-col py-1 space-y-1">
                   <Link
@@ -197,13 +218,13 @@ export default function DashboardLayout({ children }) {
         {/* Global Persistent Header */}
         <div className="bg-[#111827] px-4 pt-4 pb-3 flex justify-between items-center shadow-sm z-10 relative shrink-0">
           <div className="flex items-center gap-3">
-            <button 
+            <button
               onClick={() => setIsSidebarOpen(true)}
               className="w-9 h-9 bg-white/5 hover:bg-white/10 rounded-xl flex items-center justify-center border border-white/5 text-white/90 cursor-pointer transition-colors"
             >
               <Menu size={20} />
             </button>
-            
+
             <span className="text-white font-bold text-[17px] tracking-tight">
               {siteName.toLowerCase().includes('tradeflux') ? (
                 <>TradeFlux<span className="text-[#0073b6]">Bot</span></>
@@ -222,7 +243,7 @@ export default function DashboardLayout({ children }) {
           </div>
 
           <div className="flex items-center gap-3 relative">
-            <button 
+            <button
               onClick={() => setShowLanguageModal(true)}
               className="flex items-center gap-1 bg-white/5 border border-white/5 px-2.5 py-1 rounded-sm cursor-pointer text-[11px] font-bold text-white/90 shadow-sm hover:bg-white/10 transition-colors"
             >
@@ -230,8 +251,8 @@ export default function DashboardLayout({ children }) {
               {currentLang}
             </button>
 
-            <div 
-              onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)} 
+            <div
+              onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
               className="flex items-center gap-1 bg-white/5 pl-1 pr-2 py-1 rounded-full cursor-pointer hover:bg-white/10 transition-colors border border-white/5"
             >
               <div className="w-7 h-7 bg-[#0073b6] text-[#111827] text-[10px] font-bold rounded-full flex items-center justify-center uppercase leading-none shadow-sm">
@@ -243,8 +264,8 @@ export default function DashboardLayout({ children }) {
             {isProfileDropdownOpen && (
               <>
                 {/* Click outside backdrop */}
-                <div 
-                  className="fixed inset-0 z-40" 
+                <div
+                  className="fixed inset-0 z-40"
                   onClick={() => setIsProfileDropdownOpen(false)}
                 />
                 {/* Dropdown Menu */}
@@ -294,18 +315,18 @@ export default function DashboardLayout({ children }) {
               {/* Header */}
               <div className="p-4 border-b border-white/5 flex items-center justify-between bg-black/10">
                 <h3 className="text-white font-bold text-[15px]">Select Language</h3>
-                <button 
+                <button
                   onClick={() => setShowLanguageModal(false)}
                   className="text-gray-400 hover:text-white p-1"
                 >
                   <X size={18} />
                 </button>
               </div>
-              
+
               {/* Search */}
               <div className="p-3 border-b border-white/5 flex items-center gap-2 bg-[#111827]">
                 <Search size={16} className="text-gray-400 ml-2" />
-                <input 
+                <input
                   type="text"
                   placeholder="Search language..."
                   value={searchQuery}
@@ -319,59 +340,58 @@ export default function DashboardLayout({ children }) {
                 {dynamicLanguages
                   .filter(l => l.native_name.toLowerCase().includes(searchQuery.toLowerCase()) || l.language_name.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((lang) => {
-                  const isSelected = currentLang === lang.language_code;
-                  return (
-                    <button
-                      key={lang.language_code}
-                      onClick={async () => {
-                        setCurrentLang(lang.language_code);
-                        const targetCode = lang.language_code.toLowerCase();
-                        
-                        // Set Google Translate cookies
-                        document.cookie = `googtrans=/en/${targetCode}; path=/`;
-                        document.cookie = `googtrans=/en/${targetCode}; path=/; domain=${window.location.hostname}`;
-                        
-                        if (targetCode === 'en') {
-                          document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-                          document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
-                        }
+                    const isSelected = currentLang === lang.language_code;
+                    return (
+                      <button
+                        key={lang.language_code}
+                        onClick={async () => {
+                          setCurrentLang(lang.language_code);
+                          const targetCode = lang.language_code.toLowerCase();
 
-                        // Save to backend
-                        try {
-                          await axiosInstance.put("/users/me/language", { language_code: lang.language_code });
-                        } catch (error) {
-                          console.error('Failed to update language preference', error);
-                        }
+                          // Set Google Translate cookies
+                          document.cookie = `googtrans=/en/${targetCode}; path=/`;
+                          document.cookie = `googtrans=/en/${targetCode}; path=/; domain=${window.location.hostname}`;
 
-                        setTimeout(() => {
-                          setShowLanguageModal(false);
-                          window.location.reload();
-                        }, 200);
-                      }}
-                      className={`w-full flex items-center justify-between p-3 rounded-[12px] border transition-colors ${
-                        isSelected 
-                          ? 'border-[#0073b6] bg-amber-900/20' 
-                          : 'border-white/5 hover:border-[#0073b6] bg-[#111827]'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="relative w-10 h-10 bg-[#0b0f19] border border-white/5 rounded-xl flex items-center justify-center text-[12px] font-bold text-gray-400 shadow-sm">
-                          {lang.language_code.substring(0, 2).toUpperCase()}
-                          {isSelected && (
-                            <div className="absolute -top-1 -right-1 bg-[#0b0f19] rounded-full">
-                              <CheckCircle2 size={14} className="text-[#0073b6] fill-[#0073b6]/20" />
-                            </div>
-                          )}
+                          if (targetCode === 'en') {
+                            document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                            document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
+                          }
+
+                          // Save to backend
+                          try {
+                            await axiosInstance.put("/users/me/language", { language_code: lang.language_code });
+                          } catch (error) {
+                            console.error('Failed to update language preference', error);
+                          }
+
+                          setTimeout(() => {
+                            setShowLanguageModal(false);
+                            window.location.reload();
+                          }, 200);
+                        }}
+                        className={`w-full flex items-center justify-between p-3 rounded-[12px] border transition-colors ${isSelected
+                            ? 'border-[#0073b6] bg-amber-900/20'
+                            : 'border-white/5 hover:border-[#0073b6] bg-[#111827]'
+                          }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="relative w-10 h-10 bg-[#0b0f19] border border-white/5 rounded-xl flex items-center justify-center text-[12px] font-bold text-gray-400 shadow-sm">
+                            {lang.language_code.substring(0, 2).toUpperCase()}
+                            {isSelected && (
+                              <div className="absolute -top-1 -right-1 bg-[#0b0f19] rounded-full">
+                                <CheckCircle2 size={14} className="text-[#0073b6] fill-[#0073b6]/20" />
+                              </div>
+                            )}
+                          </div>
+                          <div className="text-left">
+                            <p className="text-[13px] font-bold text-white/90 leading-tight">{lang.native_name}</p>
+                            <p className="text-[10px] text-gray-500 mt-0.5">{lang.language_name}</p>
+                          </div>
                         </div>
-                        <div className="text-left">
-                          <p className="text-[13px] font-bold text-white/90 leading-tight">{lang.native_name}</p>
-                          <p className="text-[10px] text-gray-500 mt-0.5">{lang.language_name}</p>
-                        </div>
-                      </div>
-                      <ChevronRight size={14} className={isSelected ? 'text-[#0073b6]' : 'text-gray-600'} />
-                    </button>
-                  );
-                })}
+                        <ChevronRight size={14} className={isSelected ? 'text-[#0073b6]' : 'text-gray-600'} />
+                      </button>
+                    );
+                  })}
               </div>
             </div>
           </div>

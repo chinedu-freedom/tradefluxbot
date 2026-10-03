@@ -5,7 +5,7 @@ export async function generateMetadata() {
   try {
     const apiBase = process.env.NEXT_PUBLIC_API_URL;
     if (apiBase && apiBase.startsWith("http")) {
-      const res = await fetch(`${apiBase}/settings`, { 
+      const res = await fetch(`${apiBase}/settings`, {
         next: { revalidate: 60 },
         signal: AbortSignal.timeout(2000)
       });
@@ -18,9 +18,9 @@ export async function generateMetadata() {
           description: siteTitle,
           manifest: "/manifest.json",
           icons: {
-            icon: "/logo.jpeg",
-            shortcut: "/logo.jpeg",
-            apple: "/logo.jpeg",
+            icon: "/logo.png",
+            shortcut: "/logo.png",
+            apple: "/logo.png",
           },
           appleWebApp: {
             capable: true,
@@ -38,9 +38,9 @@ export async function generateMetadata() {
     description: "TradeFluxBot - Crypto Mining & Trading Platform",
     manifest: "/manifest.json",
     icons: {
-      icon: "/logo.jpeg",
-      shortcut: "/logo.jpeg",
-      apple: "/logo.jpeg",
+      icon: "/logo.png",
+      shortcut: "/logo.png",
+      apple: "/logo.png",
     },
     appleWebApp: {
       capable: true,
@@ -55,7 +55,7 @@ import { Toaster } from "sonner";
 
 export default function RootLayout({ children }) {
   return (
-      <html
+    <html
       lang="en"
       suppressHydrationWarning
       className="h-full antialiased translate-no-popup font-sans"

@@ -26,7 +26,7 @@ function VerifyEmailContent() {
   const { data: settingsResponse, isLoading: isLoadingSettings } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
   const siteName = settings.site_name || "TradeFluxBot";
-  const siteLogo = settings.platform_logo || "/logo.jpeg";
+  const siteLogo = settings.platform_logo || "/logo.png";
 
   useEffect(() => {
     setIsMounted(true);
@@ -336,8 +336,8 @@ function VerifyEmailContent() {
               onClick={handleResendEmail}
               variant={isButtonDisabled ? "outline" : "default"}
               className={`w-full h-12 ${isButtonDisabled
-                  ? "border-gray-300 bg-gray-50 text-gray-400 cursor-not-allowed"
-                  : "bg-amber-600 hover:bg-amber-700 text-white"
+                ? "border-gray-300 bg-gray-50 text-gray-400 cursor-not-allowed"
+                : "bg-amber-600 hover:bg-amber-700 text-white"
                 }`}
               disabled={isButtonDisabled}
             >
