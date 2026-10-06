@@ -632,7 +632,7 @@ export default function DashboardPage() {
             </div>
 
             <p className="text-gray-400 text-[12px] mb-4 leading-relaxed">
-              {siteName} offers a 4-level referral system. Invite friends and earn free spins to spin the wheel and win big!
+              Invite friends and earn 5% on every deposit they make, plus free lucky spins to win big!
             </p>
 
             <div className="space-y-1.5">

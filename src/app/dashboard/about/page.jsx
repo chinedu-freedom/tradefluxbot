@@ -119,61 +119,73 @@ export default function AboutPage() {
               <div className="w-7 h-7 bg-amber-500/10 rounded-[8px] flex items-center justify-center text-[#0073b6]">
                 <Cpu size={14} />
               </div>
-              <h3 className="text-white/90 font-bold text-[13px]">Mining Pools Overview</h3>
+              <h3 className="text-white/90 font-bold text-[13px]">Investment Plans & Mining Pools</h3>
             </div>
 
-            {/* Basic Pool */}
+            {/* Starter Plan */}
             <div className="space-y-2 border-b border-white/5 pb-3">
-              <h4 className="text-amber-500 text-[11px] font-extrabold uppercase tracking-wider">{siteName} Basic Pool</h4>
+              <h4 className="text-amber-500 text-[11px] font-extrabold uppercase tracking-wider">{siteName} Starter</h4>
               <p className="text-gray-300 text-[11px] leading-relaxed">
-                The Basic Pool offers a daily return of <strong>7.5% for 20 days</strong>, providing a total return of <strong>150%</strong> over the investment period without requiring referrals or compounding.
-              </p>
-              <p className="text-gray-400 text-[10.5px] leading-relaxed">
-                Users who wish to increase their earnings may also choose to compound their profits by following the platform’s activation process.
+                The Starter Plan offers a steady daily return of <strong>3% for 20 days</strong> (total return of <strong>160%</strong> with capital back). Daily returns are paid every 24 hours directly to your withdrawable wallet.
               </p>
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5">
-                  <span className="text-gray-400 text-[9.5px] block font-semibold">Activation Amount</span>
-                  <span className="text-white font-bold text-[11px]">$30</span>
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Min / Max Investment</span>
+                  <span className="text-white font-bold text-[11px]">$30 - $99</span>
                 </div>
                 <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5">
-                  <span className="text-gray-400 text-[9.5px] block font-semibold">Min Compounding</span>
-                  <span className="text-white font-bold text-[11px]">$30</span>
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Contract Duration</span>
+                  <span className="text-white font-bold text-[11px]">20 Days</span>
                 </div>
                 <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5 col-span-2">
-                  <span className="text-gray-400 text-[9.5px] block font-semibold">Min Withdrawal</span>
-                  <span className="text-white font-bold text-[11px]">$20 (Withdraw at any time once reached)</span>
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Withdrawal Status</span>
+                  <span className="text-white font-bold text-[11px]">Daily profit withdrawable anytime (Min $20, 5% fee)</span>
                 </div>
               </div>
             </div>
 
-            {/* VIP Pool */}
+            {/* Growth Contract */}
             <div className="space-y-2 border-b border-white/5 pb-3">
-              <h4 className="text-amber-500 text-[11px] font-extrabold uppercase tracking-wider">{siteName} VIP Pool</h4>
+              <h4 className="text-amber-500 text-[11px] font-extrabold uppercase tracking-wider">{siteName} Growth Contract</h4>
               <p className="text-gray-300 text-[11px] leading-relaxed">
-                The {siteName} VIP Pool offers a daily return of <strong>8.5% for 20 days</strong> and is designed for users seeking higher investment opportunities.
+                The Growth Contract provides an accelerated return of <strong>5% daily for 90 days</strong> (total return of <strong>550%</strong>). This is a fixed-income contract where capital and accumulated profits compound together.
               </p>
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5">
-                  <span className="text-gray-400 text-[9.5px] block font-semibold">Min Activation Amount</span>
-                  <span className="text-white font-bold text-[11px]">$10,000</span>
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Min / Max Investment</span>
+                  <span className="text-white font-bold text-[11px]">$100 - $9,999</span>
                 </div>
                 <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5">
-                  <span className="text-gray-400 text-[9.5px] block font-semibold">Min Withdrawal</span>
-                  <span className="text-white font-bold text-[11px]">$20 (Withdraw at any time)</span>
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Contract Duration</span>
+                  <span className="text-white font-bold text-[11px]">90 Days</span>
+                </div>
+                <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5 col-span-2">
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Withdrawal Status</span>
+                  <span className="text-white font-bold text-[11px]">Deposits & advertised profits released upon 90-day completion</span>
                 </div>
               </div>
             </div>
 
-            {/* Contract Pool */}
+            {/* Prestige VIP */}
             <div className="space-y-2">
-              <h4 className="text-amber-500 text-[11px] font-extrabold uppercase tracking-wider">{siteName} Contract Pool</h4>
+              <h4 className="text-amber-500 text-[11px] font-extrabold uppercase tracking-wider">{siteName} Prestige VIP</h4>
               <p className="text-gray-300 text-[11px] leading-relaxed">
-                The {siteName} Contract Pool is a fixed-income, long-term mining plan designed for users who prefer stable returns over an extended period. This plan provides a fixed daily return of <strong>10.5% for 183 days (6 months)</strong>.
+                The Prestige VIP Tier offers our premier institutional yield of <strong>6.5% daily for 90 days</strong> (total return of <strong>685%</strong>).
               </p>
-              <p className="text-gray-400 text-[10.5px] leading-relaxed">
-                Unlike the other mining pools, withdrawals are only available upon the completion of the contract period. At the end of the contract, both the accumulated earnings and the initial capital are released to the user.
-              </p>
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5">
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Min / Max Investment</span>
+                  <span className="text-white font-bold text-[11px]">$10,000 - $1,000,000</span>
+                </div>
+                <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5">
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Contract Duration</span>
+                  <span className="text-white font-bold text-[11px]">90 Days</span>
+                </div>
+                <div className="bg-[#0b0f19]/30 p-2 rounded-lg border border-white/5 col-span-2">
+                  <span className="text-gray-400 text-[9.5px] block font-semibold">Withdrawal Status</span>
+                  <span className="text-white font-bold text-[11px]">Deposits & advertised profits released upon 90-day completion</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

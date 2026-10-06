@@ -68,7 +68,7 @@ export default function HelpCenterPage() {
       id: 4,
       title: "How does the referral program work?",
       desc: "Earn commissions by inviting...",
-      answer: "Our referral program allows you to earn commissions from the investments of users you invite. The commission is credited instantly to your account when your referral makes a successful investment.",
+      answer: "Our referral program allows you to earn 5% commission on any deposit made by users you invite. The commission is credited instantly to your withdrawable balance whenever your referral completes a deposit.",
       icon: Users,
       iconBg: "bg-[#fef3c7]",
       iconColor: "text-[#9333ea]"
