@@ -24,7 +24,8 @@ export default function WalletPage() {
 
   const depositBalance = Number(user.balance || 0);
   const mainBalance = Number(user.withdrawable_balance || 0);
-  const totalBalance = depositBalance + mainBalance;
+  const lockedBalance = Number(user.statistics?.locked_profits || user.locked_profits || 0);
+  const totalBalance = depositBalance + mainBalance + lockedBalance;
 
   const toggleCurrency = () => {
     if (!user?.country) return;
@@ -50,7 +51,8 @@ export default function WalletPage() {
   const currentBalance = {
     total: formatMoney(totalBalance),
     deposit: formatMoney(depositBalance),
-    main: formatMoney(mainBalance)
+    main: formatMoney(mainBalance),
+    locked: formatMoney(lockedBalance)
   };
 
   const handleAction = (actionPath) => {
@@ -156,6 +158,14 @@ export default function WalletPage() {
               <div className="text-[7px] font-bold text-white/80 uppercase tracking-wide mb-1">Earning</div>
               <div className="text-[10px] font-bold">{loadingUser ? "..." : showBalance ? currentBalance.main : "****"}</div>
             </div>
+            {lockedBalance > 0 && (
+              <div className="bg-amber-500/15 rounded-lg p-2 flex-1 border border-amber-500/25 backdrop-blur-sm">
+                <div className="text-[7px] font-bold text-amber-300 uppercase tracking-wide mb-1 flex items-center gap-0.5">
+                  🔒 Locked
+                </div>
+                <div className="text-[10px] font-bold text-amber-200">{loadingUser ? "..." : showBalance ? currentBalance.locked : "****"}</div>
+              </div>
+            )}
           </div>
 
           {/* Actions */}

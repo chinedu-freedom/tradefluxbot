@@ -265,7 +265,7 @@ export default function DashboardPage() {
     const baseSymbol = settings.currency_symbol || "$";
     if (!userProfile) return `${baseSymbol}0.00`;
 
-    const balanceUSD = parseFloat(userProfile.balance || 0) + parseFloat(userProfile.withdrawable_balance || 0);
+    const balanceUSD = parseFloat(userProfile.balance || 0) + parseFloat(userProfile.withdrawable_balance || 0) + parseFloat(userProfile?.statistics?.locked_profits || userProfile?.locked_profits || 0);
     const baseCurrency = settings.currency_name || "USDT";
 
     if (currency === "USDT" || currency === baseCurrency) {
@@ -452,6 +452,22 @@ export default function DashboardPage() {
                 </span>
               </div>
             </div>
+
+            {/* Locked Profits (Fixed Contracts) */}
+            {parseFloat(userProfile?.statistics?.locked_profits || 0) > 0 && (
+              <div className="flex items-center justify-between w-full">
+                <div className="bg-amber-500/10 text-amber-300 text-[11.5px] font-bold px-3 py-2 skew-x-[-12deg] rounded-[6px] w-[140px] text-center border border-amber-500/20">
+                  <span className="inline-block skew-x-[12deg] uppercase tracking-wider text-[10px]">
+                    🔒 Locked Profit
+                  </span>
+                </div>
+                <div className="bg-amber-400 text-[#111827] text-[12px] font-extrabold px-3 py-2 skew-x-[-12deg] rounded-[6px] flex-1 max-w-[190px] text-center shadow-md">
+                  <span className="inline-block skew-x-[12deg] tracking-tight">
+                    {showBalance ? getFormattedStat(userProfile?.statistics?.locked_profits) : "****"}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

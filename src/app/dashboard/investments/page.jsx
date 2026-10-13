@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Plus, Wallet, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Plus, Wallet, Clock, CheckCircle2, Lock } from "lucide-react";
 import Link from "next/link";
 import { useFetchData } from "@/hooks/useApi";
 import { formatCurrency } from "@/lib/utils";
@@ -105,18 +105,33 @@ export default function MyInvestmentsPage() {
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-3 mb-3">
+                  <div className="grid grid-cols-3 gap-2 mb-3">
                     <div className="bg-white/5 p-2 rounded-lg">
-                      <div className="text-gray-400 text-[10px] mb-1">Amount Invested</div>
-                      <div className="text-white font-bold text-[13px]">{settings.currency_symbol || "$"}{Number(inv.amount).toFixed(2)}</div>
+                      <div className="text-gray-400 text-[10px] mb-1">Invested</div>
+                      <div className="text-white font-bold text-[12px]">{settings.currency_symbol || "$"}{Number(inv.amount).toFixed(2)}</div>
                     </div>
                     <div className="bg-white/5 p-2 rounded-lg">
-                      <div className="text-gray-400 text-[10px] mb-1">Expected Return</div>
-                      <div className="text-green-400 font-bold text-[13px]">
-                         {inv.plan?.daily_income ? `${inv.plan.daily_income}% Daily` : 'Variable'}
+                      <div className="text-gray-400 text-[10px] mb-1">Earned Profit</div>
+                      <div className="text-[#a3e635] font-bold text-[12px]">
+                        +{settings.currency_symbol || "$"}{Number(inv.total_paid || 0).toFixed(2)}
+                      </div>
+                    </div>
+                    <div className="bg-white/5 p-2 rounded-lg">
+                      <div className="text-gray-400 text-[10px] mb-1">Daily Return</div>
+                      <div className="text-green-400 font-bold text-[12px]">
+                         {inv.plan?.daily_income ? `${inv.plan.daily_income}%` : 'Variable'}
                       </div>
                     </div>
                   </div>
+
+                  {inv.plan?.is_fixed_deposit && activeTab === 'active' && (
+                    <div className="mb-3 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-between text-[11px] text-amber-300">
+                      <span className="flex items-center gap-1.5">
+                        <Lock size={12} className="text-amber-400" /> Fixed Contract (Locked until maturity)
+                      </span>
+                      <span className="font-bold text-amber-200">+{settings.currency_symbol || "$"}{Number(inv.total_paid || 0).toFixed(2)}</span>
+                    </div>
+                  )}
                   
                   {activeTab === 'active' && inv.end_date && (
                     <div className="flex items-center gap-1.5 text-gray-400 text-[11px]">
