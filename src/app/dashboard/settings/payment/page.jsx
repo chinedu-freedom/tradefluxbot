@@ -25,18 +25,39 @@ export default function PaymentSettingsPage() {
     showToast: true
   });
 
-  // Cooldown timer
+  // Restore cooldown from sessionStorage on initial mount
+  useEffect(() => {
+    const savedExpiry = sessionStorage.getItem("payment_otp_expires_at");
+    if (savedExpiry) {
+      const remaining = Math.ceil((Number(savedExpiry) - Date.now()) / 1000);
+      if (remaining > 0) {
+        setCooldown(remaining);
+      } else {
+        sessionStorage.removeItem("payment_otp_expires_at");
+      }
+    }
+  }, []);
+
+  // Cooldown countdown timer
   useEffect(() => {
     let timer;
     if (cooldown > 0) {
       timer = setInterval(() => {
-        setCooldown(prev => prev - 1);
+        setCooldown(prev => {
+          if (prev <= 1) {
+            sessionStorage.removeItem("payment_otp_expires_at");
+            return 0;
+          }
+          return prev - 1;
+        });
       }, 1000);
     }
     return () => clearInterval(timer);
   }, [cooldown]);
 
   const handleSendOtp = async () => {
+    if (cooldown > 0 || sendOtpMutation.isPending) return;
+
     if (!newPassword.trim() || !confirmPassword.trim()) {
       toast.error("Please enter and confirm your new withdrawal password first");
       return;
@@ -52,11 +73,15 @@ export default function PaymentSettingsPage() {
 
     try {
       await sendOtpMutation.mutateAsync({});
-      setCooldown(60);
-      // Toast is already displayed automatically by usePost hook
+      const cooldownSec = 30;
+      setCooldown(cooldownSec);
+      sessionStorage.setItem("payment_otp_expires_at", String(Date.now() + cooldownSec * 1000));
     } catch (err) {
       const remaining = err?.response?.data?.remainingSeconds;
-      if (remaining) setCooldown(remaining);
+      if (remaining) {
+        setCooldown(remaining);
+        sessionStorage.setItem("payment_otp_expires_at", String(Date.now() + remaining * 1000));
+      }
     }
   };
 
@@ -87,6 +112,8 @@ export default function PaymentSettingsPage() {
         setNewPassword("");
         setConfirmPassword("");
         setOtpCode("");
+        sessionStorage.removeItem("payment_otp_expires_at");
+        setCooldown(0);
       }
     });
   };
