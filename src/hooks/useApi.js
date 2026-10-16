@@ -11,13 +11,22 @@ import {
 } from "@/config/apiHelpers";
 import { toast } from "sonner";
 
+// Centralized sanitizer to prevent leaking confidential data (emails, tokens, etc.)
+const maskConfidentialData = (str) => {
+  if (typeof str !== "string") return str;
+  // Replace email addresses with "your email"
+  return str.replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, "your email");
+};
+
 // Centralized error formatter
 const getErrorMessage = (error) => {
   const data = error?.response?.data;
-  if (data?.errors && Array.isArray(data.errors)) return data.errors.join(", ");
-  if (data?.message) return data.message;
-  if (data?.error) return data.error;
-  return error?.message || "Something went wrong. Please try again.";
+  let msg = "Something went wrong. Please try again.";
+  if (data?.errors && Array.isArray(data.errors)) msg = data.errors.join(", ");
+  else if (data?.message) msg = data.message;
+  else if (data?.error) msg = data.error;
+  else if (error?.message) msg = error.message;
+  return maskConfidentialData(msg);
 };
 
 // Helper function to properly handle query keys
@@ -93,7 +102,7 @@ export const useFetchExternalData = (
 /* ================= SUCCESS MESSAGE MAPPER ================= */
 const getSuccessMessage = (method, endpoint, res) => {
   if (res?.message && !["Request successful", "Updated successfully", "Deleted successfully", "Success", "Request completed successfully"].includes(res.message)) {
-    return res.message;
+    return maskConfidentialData(res.message);
   }
   
   const path = typeof endpoint === "function" ? endpoint("") : endpoint;
