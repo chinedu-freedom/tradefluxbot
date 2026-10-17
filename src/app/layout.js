@@ -3,7 +3,7 @@ import "./globals.css";
 
 export async function generateMetadata() {
   try {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_BASE_URL || "https://tradefluxbot-backend-5gbk.onrender.com/api";
+    const apiBase = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_BASE_URL || "https://api.tradefluxbot.com/api";
     if (apiBase && apiBase.startsWith("http")) {
       const res = await fetch(`${apiBase}/settings`, {
         next: { revalidate: 60 },
