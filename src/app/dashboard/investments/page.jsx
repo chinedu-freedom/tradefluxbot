@@ -124,12 +124,14 @@ export default function MyInvestmentsPage() {
                     </div>
                   </div>
 
-                  {inv.plan?.is_fixed_deposit && activeTab === 'active' && (
-                    <div className="mb-3 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-between text-[11px] text-amber-300">
-                      <span className="flex items-center gap-1.5">
-                        <Lock size={12} className="text-amber-400" /> Fixed Contract (Locked until maturity)
+                  {activeTab === 'active' && (
+                    <div className="mb-3 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg flex items-center justify-between text-[11px] text-emerald-300">
+                      <span className="flex items-center gap-1.5 font-medium">
+                        <CheckCircle2 size={12} className="text-emerald-400" /> Flexible Contract (Daily Profits Withdrawable)
                       </span>
-                      <span className="font-bold text-amber-200">+{settings.currency_symbol || "$"}{Number(inv.total_paid || 0).toFixed(2)}</span>
+                      <span className="font-bold text-emerald-300">+{settings.currency_symbol || "$"}{Number(inv.total_paid || 0).toFixed(2)}</span>
+                    </div>
+                  )}</span>
                     </div>
                   )}
                   
