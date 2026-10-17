@@ -129,9 +129,6 @@ export default function MyInvestmentsPage() {
                       <span className="flex items-center gap-1.5 font-medium">
                         <CheckCircle2 size={12} className="text-emerald-400" /> Flexible Contract (Daily Profits Withdrawable)
                       </span>
-                      <span className="font-bold text-emerald-300">+{settings.currency_symbol || "$"}{Number(inv.total_paid || 0).toFixed(2)}</span>
-                    </div>
-                  )}</span>
                     </div>
                   )}
                   
