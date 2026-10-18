@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Plus, Wallet, Clock, CheckCircle2, Lock } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +12,14 @@ export default function MyInvestmentsPage() {
   const [activeTab, setActiveTab] = useState("active"); // "active" or "completed"
   const { data: settingsRes } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsRes?.settings || {};
-  const { data: invRes, isLoading } = useFetchData("/users/me/investments", ["my-investments"]);
+  const { data: invRes, isLoading, refetch } = useFetchData("/users/me/investments", ["my-investments"], {
+    refetchOnMount: "always",
+    staleTime: 0
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
   
   const investments = invRes?.data || { active: [], completed: [], stats: { total_invested: 0, active_count: 0, est_monthly: 0 } };
   

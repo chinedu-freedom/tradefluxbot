@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Wallet, X, Loader2, Zap, Clock, ShieldCheck, Cpu, TrendingUp, ChevronRight, Layers, Coins } from "lucide-react";
 import Link from "next/link";
 import { useFetchData } from "@/hooks/useApi";
+import { useQueryClient } from "@tanstack/react-query";
 import { postData } from "@/config/apiHelpers";
 import { toast } from "sonner";
 
@@ -19,6 +20,7 @@ export default function MiningPlansPage() {
     ? [...plansRes.data].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
     : [];
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const balances = {
     main: Number(userRes?.user?.balance || 0) + Number(userRes?.user?.withdrawable_balance || 0)
@@ -41,12 +43,18 @@ export default function MiningPlansPage() {
       });
       
       if (data?.success) {
+        queryClient.invalidateQueries({ queryKey: ["my-investments"] });
+        queryClient.refetchQueries({ queryKey: ["my-investments"] });
+        queryClient.invalidateQueries({ queryKey: ["user"] });
+        queryClient.invalidateQueries({ queryKey: ["profile"] });
+        queryClient.invalidateQueries({ queryKey: ["transactions"] });
+
         toast.success(data.message || "Plan activated successfully! Your investment is now running.");
         setSelectedPlan(null);
         setInvestmentAmount("");
         setTimeout(() => {
           router.push("/dashboard/investments");
-        }, 1500);
+        }, 1000);
       } else {
         toast.error(data.error || "Investment failed");
       }
