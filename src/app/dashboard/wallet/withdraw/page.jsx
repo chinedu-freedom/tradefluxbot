@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Wallet, Info, ChevronDown, Check, Loader2, Eye, EyeOff, ShieldCheck, Mail, RefreshCw, AlertTriangle, ExternalLink } from "lucide-react";
+import { ArrowLeft, Wallet, Info, ChevronDown, Check, Loader2, Eye, EyeOff, ShieldCheck, Mail, RefreshCw, AlertTriangle, ExternalLink, Calendar, Lock, Unlock, Sparkles } from "lucide-react";
 import { useFetchData, usePost } from "@/hooks/useApi";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -61,8 +61,12 @@ function WithdrawContent() {
   const maxWithdrawal = Number(settings.max_withdrawal) || 10000;
   const withdrawalCharge = Number(settings.withdrawal_charge) || 2;
   
-  const mainBalance = Number(user.withdrawable_balance || 0);
-  const totalBalance = mainBalance;
+  const isFriday = user.is_friday ?? (new Date().getDay() === 5);
+  const everydayBalance = Number(user.withdrawable_balance || 0);
+  const teamBalance = Number(user.team_commission_balance || 0);
+  const totalBalance = isFriday ? Number((everydayBalance + teamBalance).toFixed(2)) : everydayBalance;
+  const overallBalance = Number((everydayBalance + teamBalance).toFixed(2));
+
   const feeAmount = amount ? (Number(amount) * (withdrawalCharge / 100)) : 0;
   const netPayout = amount ? Math.max(0, Number(amount) - feeAmount) : 0;
 
@@ -339,6 +343,65 @@ function WithdrawContent() {
             )}
           </div>
 
+          {/* Balance Breakdown Card */}
+          <div className="bg-black/40 border border-white/10 rounded-[16px] p-4 space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-white/5">
+              <span className="text-[12px] font-bold text-white/90 flex items-center gap-1.5">
+                <Wallet size={14} className="text-[#0073b6]" /> Balance Breakdown
+              </span>
+              {isFriday ? (
+                <span className="text-[10.5px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <Unlock size={11} /> Friday Payout Open
+                </span>
+              ) : (
+                <span className="text-[10.5px] font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <Calendar size={11} /> Team Payout on Friday
+                </span>
+              )}
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {/* Everyday Balance */}
+              <div className="bg-white/5 border border-white/5 rounded-xl p-2.5">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10.5px] text-gray-400 font-medium">Everyday (24/7)</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></span>
+                </div>
+                <div className="text-[15px] font-extrabold text-white">
+                  {settings.currency_symbol || "$"}{everydayBalance.toFixed(2)}
+                </div>
+                <p className="text-[9.5px] text-gray-500 mt-0.5">ROI & Level 1 Bonus</p>
+              </div>
+
+              {/* Team Commission Balance */}
+              <div className={`border rounded-xl p-2.5 transition-all ${isFriday ? "bg-emerald-500/10 border-emerald-500/30" : "bg-white/5 border-white/5"}`}>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10.5px] text-gray-400 font-medium">Team (Levels 2+)</span>
+                  {isFriday ? (
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.5)]"></span>
+                  ) : (
+                    <Lock size={11} className="text-amber-400" />
+                  )}
+                </div>
+                <div className="text-[15px] font-extrabold text-white">
+                  {settings.currency_symbol || "$"}{teamBalance.toFixed(2)}
+                </div>
+                <p className={`text-[9.5px] mt-0.5 ${isFriday ? "text-emerald-400 font-medium" : "text-amber-400/80"}`}>
+                  {isFriday ? "Unlocked today" : "Unlocks on Friday"}
+                </p>
+              </div>
+            </div>
+
+            {!isFriday && teamBalance > 0 && (
+              <div className="bg-amber-500/5 border border-amber-500/15 rounded-lg p-2.5 flex items-start gap-2 text-amber-300 text-[11px] leading-relaxed">
+                <Info size={13} className="shrink-0 mt-0.5 text-amber-400" />
+                <span>
+                  Your Team Commission balance of <strong>{settings.currency_symbol || "$"}{teamBalance.toFixed(2)}</strong> is reserved and can be withdrawn on Friday.
+                </span>
+              </div>
+            )}
+          </div>
+
           {/* Enter Amount */}
           <div className="space-y-2">
             <div className="flex justify-between items-center px-1">
@@ -346,7 +409,7 @@ function WithdrawContent() {
                 Enter Amount
               </label>
               <span className="text-[11.5px] text-gray-400 font-semibold">
-                Available: {isLoadingUser ? "..." : `${settings.currency_symbol || "$"}${totalBalance.toFixed(2)}`}
+                Available Today: {isLoadingUser ? "..." : `${settings.currency_symbol || "$"}${totalBalance.toFixed(2)}`}
               </span>
             </div>
             
