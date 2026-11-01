@@ -32,7 +32,7 @@ const parseNoticeToLines = (htmlString) => {
 const FIXED_CRYPTOS = [
   { id: "usdt-trc20", name: "Tether (TRC20)", symbol: "USDT", network: "TRC20", network_name: "Tron Network (TRC20)", icon: "https://assets.coingecko.com/coins/images/325/large/Tether.png" },
   { id: "usdt-bep20", name: "Tether (BEP20)", symbol: "USDT", network: "BEP20", network_name: "BNB Smart Chain (BEP20)", icon: "https://assets.coingecko.com/coins/images/325/large/Tether.png" },
-  { id: "eth-bep20", name: "Ethereum (BEP20)", symbol: "ETH", network: "BEP20", network_name: "BNB Smart Chain (BEP20)", icon: "https://assets.coingecko.com/coins/images/279/large/ethereum.png" },
+  { id: "eth-erc20", name: "Ethereum (ERC20)", symbol: "ETH", network: "ERC20", network_name: "Ethereum Network (ERC20)", icon: "https://assets.coingecko.com/coins/images/279/large/ethereum.png" },
   { id: "ltc", name: "Litecoin", symbol: "LTC", network: "Litecoin", network_name: "Litecoin Network", icon: "https://assets.coingecko.com/coins/images/2/large/litecoin.png" }
 ];
 
