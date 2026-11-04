@@ -9,7 +9,7 @@ import { useFetchData } from "@/hooks/useApi";
 export default function TelegramModal({ isOpen, setIsOpen }) {
   const { data: settingsResponse } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsResponse?.settings || {};
-  const telegramLink = settings.telegram_community || settings.telegram_group || "https://t.me";
+  const telegramLink = settings.telegram_community || settings.telegram_group || "https://t.me/tradefluxbotgroup";
   useEffect(() => {
     // Only show automatically once per session/visit if we want, but user requested "immediately when page loads"
     // The parent component can handle setting isOpen to true on mount.

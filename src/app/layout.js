@@ -51,6 +51,7 @@ export async function generateMetadata() {
 }
 
 import { Providers } from "./providers";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 import { Toaster } from "sonner";
 
 export default function RootLayout({ children }) {
@@ -81,6 +82,7 @@ export default function RootLayout({ children }) {
         <div id="google_translate_element" style={{ display: 'none' }}></div>
         <Providers>
           {children}
+          <WhatsAppWidget />
         </Providers>
         <Toaster position="top-right" richColors />
       </body>

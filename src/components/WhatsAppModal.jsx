@@ -9,7 +9,8 @@ import { useFetchData } from "@/hooks/useApi";
 export default function WhatsAppModal() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: settingsRes } = useFetchData("/settings", ["platform-settings"]);
-  const whatsappGroupLink = settingsRes?.settings?.whatsapp_group || "#";
+  const defaultWhatsAppGroup = "https://chat.whatsapp.com/DHHHJIHFPzKKWLnYbY68Ms?s=cl&p=i&mlu=4&ilr=4&iam=2";
+  const whatsappGroupLink = settingsRes?.settings?.whatsapp_group || defaultWhatsAppGroup;
 
   useEffect(() => {
     // Automatically open on mount when the dashboard loads

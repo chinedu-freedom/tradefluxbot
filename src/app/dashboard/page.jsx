@@ -502,14 +502,33 @@ export default function DashboardPage() {
                   window.dispatchEvent(new Event('open-whatsapp-modal'));
                 }
               },
+              {
+                label: "WhatsApp Support",
+                icon: (
+                  <div className="w-[30px] h-[30px] bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-sm">
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 2A13 13 0 0 0 4.7 20.9L3 27l6.3-1.6A13 13 0 1 0 16 2zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 25.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a9 9 0 0 1-2.6-1.6 9.9 9.9 0 0 1-1.8-2.3c-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.4.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.6-.5-.8-.5h-.7c-.2 0-.7.1-1 .5a4.3 4.3 0 0 0-1.3 3.2 7.5 7.5 0 0 0 1.6 4 17.2 17.2 0 0 0 6.6 5.8c2.4 1 2.9.8 3.4.8a5.8 5.8 0 0 0 3.8-2.6 4.7 4.7 0 0 0 .3-2.6c-.1-.1-.3-.2-.6-.4z"/>
+                    </svg>
+                  </div>
+                ),
+                action: () => {
+                  const num = settings?.whatsapp_support || "+44 7344 931677";
+                  if (num.startsWith("http://") || num.startsWith("https://")) {
+                    window.open(num, "_blank");
+                  } else {
+                    const clean = num.replace(/[^0-9]/g, "");
+                    window.open(`https://wa.me/${clean}`, "_blank");
+                  }
+                }
+              },
             ].map((item, idx) => (
               <div
                 key={idx}
                 onClick={item.action}
                 className="flex flex-col items-center gap-1.5 cursor-pointer group"
               >
-                <div className="text-[24px] select-none group-hover:scale-115 transition-transform duration-200 py-1">
-                  {item.emoji}
+                <div className="h-[32px] flex items-center justify-center select-none group-hover:scale-115 transition-transform duration-200">
+                  {item.icon ? item.icon : <span className="text-[24px] py-1">{item.emoji}</span>}
                 </div>
                 <span className="text-[10px] text-white/80 font-medium text-center leading-tight">
                   {item.label}

@@ -30,9 +30,14 @@ export default function HelpCenterPage() {
   const { data: settingsRes } = useFetchData("/settings", ["platform-settings"]);
   const settings = settingsRes?.settings || {};
 
-  const handleLink = (link) => {
-    if (link) {
-      window.open(link, "_blank");
+  const handleLink = (link, isWhatsApp = false, fallback = "") => {
+    const target = link || fallback;
+    if (!target) return;
+    if (isWhatsApp && !target.startsWith("http://") && !target.startsWith("https://")) {
+      const clean = target.replace(/[^0-9]/g, "");
+      window.open(`https://wa.me/${clean}`, "_blank");
+    } else {
+      window.open(target, "_blank");
     }
   };
 
@@ -129,7 +134,7 @@ export default function HelpCenterPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <button 
-              onClick={() => handleLink(settings.telegram_support)}
+              onClick={() => handleLink(settings.telegram_support, false, "https://t.me/tradefluxbotgroup")}
               className="cursor-pointer bg-[#111827] rounded-[16px] border border-white/5 shadow-md p-4 flex flex-col items-center text-center hover:bg-white/5 transition-colors"
             >
               <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-full flex items-center justify-center text-[#0073b6] mb-2.5">
@@ -139,7 +144,7 @@ export default function HelpCenterPage() {
               <span className="text-gray-400 text-[11px]">Fast response</span>
             </button>
             <button 
-              onClick={() => handleLink(settings.whatsapp_support)}
+              onClick={() => handleLink(settings.whatsapp_support, true, "+44 7344 931677")}
               className="cursor-pointer bg-[#111827] rounded-[16px] border border-white/5 shadow-md p-4 flex flex-col items-center text-center hover:bg-white/5 transition-colors"
             >
               <div className="w-[42px] h-[42px] bg-green-900/20 rounded-full flex items-center justify-center text-[#16a34a] mb-2.5">
@@ -159,7 +164,7 @@ export default function HelpCenterPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <button 
-              onClick={() => handleLink(settings.telegram_community)}
+              onClick={() => handleLink(settings.telegram_community || settings.telegram_group, false, "https://t.me/tradefluxbotgroup")}
               className="cursor-pointer bg-[#111827] rounded-[16px] border border-white/5 shadow-md p-4 flex flex-col items-center text-center hover:bg-white/5 transition-colors"
             >
               <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-[14px] flex items-center justify-center text-[#0073b6] mb-2.5">
@@ -169,11 +174,11 @@ export default function HelpCenterPage() {
               <span className="text-gray-400 text-[11px]">News & Updates</span>
             </button>
             <button 
-              onClick={() => handleLink(settings.telegram_group)}
+              onClick={() => handleLink(settings.whatsapp_group, false, "https://chat.whatsapp.com/DHHHJIHFPzKKWLnYbY68Ms?s=cl&p=i&mlu=4&ilr=4&iam=2")}
               className="cursor-pointer bg-[#111827] rounded-[16px] border border-white/5 shadow-md p-4 flex flex-col items-center text-center hover:bg-white/5 transition-colors"
             >
-              <div className="w-[42px] h-[42px] bg-amber-900/20 rounded-[14px] flex items-center justify-center text-[#0073b6] mb-2.5">
-                <Users size={20} className="fill-[#0073b6]" />
+              <div className="w-[42px] h-[42px] bg-green-900/20 rounded-[14px] flex items-center justify-center text-[#25D366] mb-2.5">
+                <Users size={20} className="fill-[#25D366]" />
               </div>
               <span className="text-white/90 text-[13px] font-bold mb-0.5">Whatsapp Group</span>
               <span className="text-gray-400 text-[11px]">Community</span>

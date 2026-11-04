@@ -144,11 +144,11 @@ export default function DashboardLayout({ children }) {
                   setIsSidebarOpen(false);
                   if (item.isExternal) {
                     e.preventDefault();
-                    if (item.href && item.href !== "#") {
-                      window.open(item.href, "_blank");
-                    } else {
-                      toast.info("Support link is not configured.");
+                    let target = item.href && item.href !== "#" ? item.href : "+44 7344 931677";
+                    if (!target.startsWith("http://") && !target.startsWith("https://")) {
+                      target = `https://wa.me/${target.replace(/[^0-9]/g, '')}`;
                     }
+                    window.open(target, "_blank");
                   }
                 }}
                 className="flex items-center gap-3 px-4 py-3 text-white/90 hover:bg-white/5 rounded-xl text-sm font-medium transition-colors cursor-pointer"
