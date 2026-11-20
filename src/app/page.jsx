@@ -158,13 +158,6 @@ export default function LoginPage() {
                   </label>
                 )}
               />
-
-              <Link
-                href="/auth/forgot-password"
-                className="text-sm text-amber-600 hover:underline cursor-pointer"
-              >
-                Forgot password?
-              </Link>
             </div>
 
             <Button
